@@ -11,37 +11,47 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function goals()
+    {
+        return $this->belongsToMany(Goal::class, 'goal_user')->withTimestamps();
+    }
+
+    public function habits()
+    {
+        return $this->belongsToMany(Habit::class, 'habit_user')->withTimestamps();
+    }
+
+    public function metrics()
+    {
+        return $this->hasMany(Metric::class);
+    }
+
+    public function streaks()
+    {
+        return $this->hasMany(Streak::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }
