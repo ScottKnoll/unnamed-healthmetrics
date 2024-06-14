@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Habit extends Model
 {
-    protected $fillable = ['user_id', 'name', 'description'];
+    protected $fillable = [
+        'user_id',
+        'name',
+        'description'
+    ];
 
     public function metrics()
     {

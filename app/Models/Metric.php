@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Metric extends Model
 {
-    protected $fillable = ['user_id', 'habit_id', 'goal_id', 'value', 'date'];
+    protected $fillable = [
+        'user_id',
+        'habit_id',
+        'goal_id',
+        'value',
+        'date'
+    ];
 
     public function goal()
     {

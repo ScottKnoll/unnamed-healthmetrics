@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Streak extends Model
 {
-    protected $fillable = ['user_id', 'habit_id', 'goal_id', 'length'];
+    protected $fillable = [
+        'user_id',
+        'habit_id',
+        'goal_id',
+        'length'
+    ];
 
     public function goal()
     {

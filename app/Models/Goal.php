@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Goal extends Model
 {
-    protected $fillable = ['user_id', 'name', 'description', 'target_date'];
+    protected $fillable = [
+        'user_id',
+        'name',
+        'description',
+        'target_date'
+    ];
 
     public function metrics()
     {
