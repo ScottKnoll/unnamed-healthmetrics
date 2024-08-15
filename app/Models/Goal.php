@@ -8,9 +8,15 @@ class Goal extends Model
 {
     protected $fillable = [
         'user_id',
-        'name',
-        'description',
-        'target_date'
+        'category',
+        'five_year_goal',
+        'one_year_goal',
+        'one_month_goal',
+        'smart_goals',
+    ];
+
+    protected $casts = [
+        'smart_goals' => 'array',
     ];
 
     public function metrics()
