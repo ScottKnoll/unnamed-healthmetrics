@@ -6,9 +6,9 @@
                     <a href="/goals/create/social" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Social',
+                            $category === 'social',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Social',
+                            $category !== 'social',
                     ])>
                         <x-svg.user-group
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -17,9 +17,9 @@
                     <a href="/goals/create/career" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Career',
+                            $category === 'career',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Career',
+                            $category !== 'career',
                     ])>
                         <x-svg.briefcase
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -28,9 +28,9 @@
                     <a href="/goals/create/physical" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Physical',
+                            $category === 'physical',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Physical',
+                            $category !== 'physical',
                     ])>
                         <x-svg.scale
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -39,9 +39,9 @@
                     <a href="/goals/create/family" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Family',
+                            $category === 'family',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Family',
+                            $category !== 'family',
                     ])>
                         <x-svg.heart
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -50,9 +50,9 @@
                     <a href="/goals/create/leisure" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Leisure',
+                            $category === 'leisure',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Leisure',
+                            $category !== 'leisure',
                     ])>
                         <x-svg.music-note
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -61,9 +61,9 @@
                     <a href="/goals/create/personality" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Personality',
+                            $category === 'personality',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Personality',
+                            $category !== 'personality',
                     ])>
                         <x-svg.happy-face
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -72,9 +72,9 @@
                     <a href="/goals/create/other" @class([
                         'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                         'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'Other',
+                            $category === 'other',
                         'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'Other',
+                            $category !== 'other',
                     ])>
                         <x-svg.question-mark-circle
                             class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
@@ -89,10 +89,44 @@
                     <div class="shadow sm:overflow-hidden sm:rounded-md">
                         <div class="px-4 py-6 space-y-6 bg-white sm:p-6">
                             <div>
-                                {{-- <h3 class="text-base font-semibold leading-6 text-gray-900">{{ $category }}</h3> --}}
-                                <p class="mt-1 text-sm text-gray-500">Social goals may include devoting time to
-                                    friendships, participating in social activities, or building a social support
-                                    network.</p>
+                                <h3 class="text-base font-semibold leading-6 text-gray-900">{{ ucfirst($category) }}
+                                    Goals</h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    @switch($category)
+                                        @case('social')
+                                            Social goals may include devoting time to friendships, participating in social
+                                            activities, or building a social support network.
+                                        @break
+
+                                        @case('career')
+                                            Career goals might focus on achieving professional milestones or enhancing
+                                            job-related skills.
+                                        @break
+
+                                        @case('physical')
+                                            Physical goals often involve fitness achievements, health improvements or other
+                                            bodily goals.
+                                        @break
+
+                                        @case('family')
+                                            Family goals could center on spending more time with family, planning family events,
+                                            or enhancing home life.
+                                        @break
+
+                                        @case('leisure')
+                                            Leisure goals can relate to hobbies, travel, or other recreational activities.
+                                        @break
+
+                                        @case('personality')
+                                            Personality goals may involve personal development, such as becoming more patient or
+                                            organized.
+                                        @break
+
+                                        @case('other')
+                                            Other goals that do not necessarily fit into any other category.
+                                        @break
+                                    @endswitch
+                                </p>
                             </div>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3">
@@ -155,11 +189,11 @@
                                     <x-input-error :messages="$errors->get('smart_goals.relevant')" class="mt-2" />
                                 </div>
                                 <div>
-                                    <x-label class="mb-2" for="smart_goals[time-bound]">Time-bound</x-label>
-                                    <x-textarea id="smart_goals[time-bound]" name="smart_goals[time-bound]"
-                                        :value="old('smart_goals[time-bound]')" rows="3"></x-textarea>
+                                    <x-label class="mb-2" for="smart_goals[time-based]">Time-based</x-label>
+                                    <x-textarea id="smart_goals[time-based]" name="smart_goals[time-based]"
+                                        :value="old('smart_goals[time-based]')" rows="3"></x-textarea>
                                     <p class="mt-2 text-sm text-gray-500">What’s the deadline and is it realistic?</p>
-                                    <x-input-error :messages="$errors->get('smart_goals.time-bound')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('smart_goals.time-based')" class="mt-2" />
                                 </div>
                             </div>
                         </div>

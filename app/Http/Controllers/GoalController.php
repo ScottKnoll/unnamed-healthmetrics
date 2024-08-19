@@ -17,7 +17,7 @@ class GoalController extends Controller
 
     public function create($category = null)
     {
-        $validCategories = ['Social', 'Career', 'Physical', 'Family', 'Leisure', 'Personality', 'Other'];
+        $validCategories = ['social', 'career', 'physical', 'family', 'leisure', 'personality', 'other'];
 
         $category = in_array($category, $validCategories) ? $category : 'Social';
 
