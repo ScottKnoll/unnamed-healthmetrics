@@ -15,9 +15,15 @@ class GoalController extends Controller
         ]);
     }
 
-    public function create()
+    public function create($category = null)
     {
-        return view('goals.create');
+        $validCategories = ['Social', 'Career', 'Physical', 'Family', 'Leisure', 'Personality', 'Other'];
+
+        $category = in_array($category, $validCategories) ? $category : 'Social';
+
+        return view('goals.create', [
+            'category' => $category
+        ]);
     }
 
     public function store()

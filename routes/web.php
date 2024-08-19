@@ -16,6 +16,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tasks', TaskController::class);
     Route::resource('goals', GoalController::class);
+    Route::get('/goals/create/{category?}', [GoalController::class, 'create'])->name('goals.create');
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
