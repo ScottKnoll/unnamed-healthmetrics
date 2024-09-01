@@ -19,7 +19,7 @@ class GoalController extends Controller
     {
         $validCategories = ['social', 'career', 'physical', 'family', 'leisure', 'personality', 'other'];
 
-        $category = in_array($category, $validCategories) ? $category : 'Social';
+        $category = in_array($category, $validCategories) ? $category : 'social';
 
         return view('goals.create', [
             'category' => $category
@@ -29,6 +29,7 @@ class GoalController extends Controller
     public function store()
     {
         $validated = request()->validate([
+            'category' => 'required|in:social,career,physical,family,leisure,personality,other',
             'five_year_goal' => 'nullable',
             'one_year_goal' => 'nullable',
             'one_month_goal' => 'nullable',
@@ -40,7 +41,7 @@ class GoalController extends Controller
             'smart_goals.time-based' => 'nullable',
         ]);
 
-        $validated['user_id'] = auth()->user()->id;
+        $validated['user_id'] = auth()->id;
 
         Goal::create($validated);
 
@@ -51,12 +52,14 @@ class GoalController extends Controller
     {
         return view('goals.edit', [
             'goal' => $goal,
+            'category' => $goal->category,
         ]);
     }
 
     public function update(Goal $goal)
     {
         $validated = request()->validate([
+            'category' => 'required|in:social,career,physical,family,leisure,personality,other',
             'five_year_goal' => 'nullable',
             'one_year_goal' => 'nullable',
             'one_month_goal' => 'nullable',
@@ -65,7 +68,7 @@ class GoalController extends Controller
             'smart_goals.measurable' => 'nullable',
             'smart_goals.achievable' => 'nullable',
             'smart_goals.relevant' => 'nullable',
-            'smart_goals.time_based' => 'nullable',
+            'smart_goals.time-based' => 'nullable',
         ]);
 
         $goal->update($validated);
