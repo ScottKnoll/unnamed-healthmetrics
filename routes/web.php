@@ -15,8 +15,13 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::resource('tasks', TaskController::class);
-    Route::resource('goals', GoalController::class);
+    // Route::resource('goals', GoalController::class);
     Route::get('/goals/create/{category?}', [GoalController::class, 'create'])->name('goals.create');
+    Route::get('/goals/{goal}/edit', [GoalController::class, 'edit'])->name('goals.edit');
+    Route::put('/goals/{goal}', [GoalController::class, 'update'])->name('goals.update');
+    Route::get('/goals', [GoalController::class, 'index'])->name('goals.index');
+
+
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

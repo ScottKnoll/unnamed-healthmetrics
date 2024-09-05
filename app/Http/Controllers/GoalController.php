@@ -41,7 +41,7 @@ class GoalController extends Controller
             'smart_goals.time-based' => 'nullable',
         ]);
 
-        $validated['user_id'] = auth()->id;
+        $validated['user_id'] = auth()->id();
 
         Goal::create($validated);
 
