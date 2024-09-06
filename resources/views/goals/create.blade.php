@@ -130,6 +130,11 @@
                             </div>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3">
+                                    <x-label class="mb-2" for="title">Title:</x-label>
+                                    <x-input id="title" name="title" :value="old('title')"></x-input>
+                                    <x-input-error :messages="$errors->get('five_year_goal')" class="mt-2" />
+                                </div>
+                                <div class="col-span-3">
                                     <x-label class="mb-2" for="five_year_goal">My 5-year Goal:</x-label>
                                     <x-textarea id="five_year_goal" name="five_year_goal" :value="old('five_year_goal')"
                                         rows="3"></x-textarea>
