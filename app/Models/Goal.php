@@ -9,6 +9,7 @@ class Goal extends Model
     protected $fillable = [
         'user_id',
         'category',
+        'title',
         'five_year_goal',
         'one_year_goal',
         'one_month_goal',

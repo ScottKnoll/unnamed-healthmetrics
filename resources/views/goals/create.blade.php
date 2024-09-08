@@ -132,7 +132,7 @@
                                 <div class="col-span-3">
                                     <x-label class="mb-2" for="title">Title:</x-label>
                                     <x-input id="title" name="title" :value="old('title')"></x-input>
-                                    <x-input-error :messages="$errors->get('five_year_goal')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                                 <div class="col-span-3">
                                     <x-label class="mb-2" for="five_year_goal">My 5-year Goal:</x-label>

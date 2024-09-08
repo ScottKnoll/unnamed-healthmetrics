@@ -32,7 +32,7 @@
                             <p class="text-sm font-semibold leading-6 text-gray-900">
                                 <a href="/goals/{{ $goal->id }}">
                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
-                                    {{-- {{ $goal->name ?? 'N/A' }} --}}
+                                    {{ $goal->title }}
                                 </a>
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
@@ -43,8 +43,8 @@
                     </div>
                     <div class="flex items-center shrink-0 gap-x-4">
                         <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            {{-- <p class="text-sm leading-6 text-gray-900">{{ $goal->venue ?? 'N/A' }}</p> --}}
-                            {{-- <p class="mt-1 text-xs leading-5 text-gray-500">{{ $goal->date->diffForHumans() }} --}}
+                            {{-- <p class="text-sm leading-6 text-gray-900">{{ $goal->created_at }}</p> --}}
+                            <p class="mt-1 text-xs leading-5 text-gray-500">{{ $goal->updated_at->diffForHumans() }}
                             </p>
                         </div>
                         <x-svg.chevron-right class="flex-none w-5 h-5 text-gray-400" />

@@ -30,6 +30,7 @@ class GoalController extends Controller
     {
         $validated = request()->validate([
             'category' => 'required|in:social,career,physical,family,leisure,personality,other',
+            'title' => 'required',
             'five_year_goal' => 'nullable',
             'one_year_goal' => 'nullable',
             'one_month_goal' => 'nullable',
