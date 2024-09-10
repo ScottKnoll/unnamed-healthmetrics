@@ -35,10 +35,7 @@ class GoalController extends Controller
     {
         $validated = request()->validate([
             'category' => 'required|in:social,career,physical,family,leisure,personality,other',
-            'title' => 'required',
-            'five_year_goal' => 'nullable',
-            'one_year_goal' => 'nullable',
-            'one_month_goal' => 'nullable',
+            'goal' => 'required|max:255',
             'smart_goals' => 'required|array',
             'smart_goals.specific' => 'nullable',
             'smart_goals.measurable' => 'nullable',
@@ -73,9 +70,7 @@ class GoalController extends Controller
     {
         $validated = request()->validate([
             'category' => 'required|in:social,career,physical,family,leisure,personality,other',
-            'five_year_goal' => 'nullable',
-            'one_year_goal' => 'nullable',
-            'one_month_goal' => 'nullable',
+            'goal' => 'required|max:255',
             'smart_goals' => 'required|array',
             'smart_goals.specific' => 'nullable',
             'smart_goals.measurable' => 'nullable',

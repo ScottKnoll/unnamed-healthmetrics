@@ -50,24 +50,9 @@
                             </div>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3">
-                                    <x-label class="mb-2" for="five_year_goal">My 5-year Goal:</x-label>
-                                    <x-textarea id="five_year_goal" name="five_year_goal"
-                                        rows="3">{{ old('five_year_goal', $goal->five_year_goal) }}</x-textarea>
-                                    <x-input-error :messages="$errors->get('five_year_goal')" class="mt-2" />
-                                </div>
-                                <div class="col-span-3">
-                                    <x-label class="mb-2" for="one_year_goal">My 1-year Goal:</x-label>
-                                    <x-textarea id="one_year_goal" name="one_year_goal" rows="3">
-                                        {{ old('five_year_goal', $goal->one_year_goal) }}
-                                    </x-textarea>
-                                    <x-input-error :messages="$errors->get('one_year_goal')" class="mt-2" />
-                                </div>
-                                <div class="col-span-3">
-                                    <x-label class="mb-2" for="one_month_goal">My 1-month Goal:</x-label>
-                                    <x-textarea id="one_month_goal" name="one_month_goal" rows="3">
-                                        {{ old('one_month_goal', $goal->five_year_goal) }}
-                                    </x-textarea>
-                                    <x-input-error :messages="$errors->get('one_month_goal')" class="mt-2" />
+                                    <x-label class="mb-2" for="goal">Goal:</x-label>
+                                    <x-input id="goal" name="goal" :value="old('goal', $goal->goal)"></x-input>
+                                    <x-input-error :messages="$errors->get('goal')" class="mt-2" />
                                 </div>
                             </div>
                         </div>

@@ -11,11 +11,8 @@ return new class extends Migration
         Schema::create('goals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
+            $table->string('goal');
             $table->string('category');
-            $table->text('five_year_goal')->nullable();
-            $table->text('one_year_goal')->nullable();
-            $table->text('one_month_goal')->nullable();
             $table->json('smart_goals');
             $table->timestamps();
         });
