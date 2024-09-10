@@ -54,4 +54,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function getCategories()
+    {
+        return [
+            'social',
+            'career',
+            'physical',
+            'family',
+            'leisure',
+            'personality',
+            'other',
+        ];
+    }
 }

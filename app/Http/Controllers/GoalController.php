@@ -8,16 +8,21 @@ class GoalController extends Controller
 {
     public function index()
     {
-        $goals = Goal::all();
+        $categories = auth()->user()->getCategories();
+        $currentCategory = request()->query('category');
+
+        $goals = Goal::where('category', $currentCategory)->get();
 
         return view('goals.index', [
             'goals' => $goals,
+            'categories' => $categories,
+            'currentCategory' => $currentCategory,
         ]);
     }
 
     public function create($category = null)
     {
-        $validCategories = ['social', 'career', 'physical', 'family', 'leisure', 'personality', 'other'];
+        $validCategories = auth()->user()->getCategories();
 
         $category = in_array($category, $validCategories) ? $category : 'social';
 
@@ -47,6 +52,13 @@ class GoalController extends Controller
         Goal::create($validated);
 
         return redirect('/goals');
+    }
+
+    public function show(Goal $goal)
+    {
+        return view('goals.show', [
+            'goal' => $goal,
+        ]);
     }
 
     public function edit(Goal $goal)
