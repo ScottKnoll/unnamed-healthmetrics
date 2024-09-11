@@ -34,7 +34,7 @@ class GoalController extends Controller
     public function store()
     {
         $validated = request()->validate([
-            'category' => 'required|in:social,career,physical,family,leisure,personality,other',
+            'category' => 'required',
             'goal' => 'required|max:255',
             'smart_goals' => 'required|array',
             'smart_goals.specific' => 'nullable',
