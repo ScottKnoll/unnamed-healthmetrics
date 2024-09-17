@@ -9,8 +9,10 @@ class Goal extends Model
     protected $fillable = [
         'user_id',
         'category',
-        'goal',
+        'goal_title',
         'smart_goals',
+        'goal_start',
+        'goal_end',
     ];
 
     protected $casts = [
@@ -27,8 +29,8 @@ class Goal extends Model
         return $this->hasMany(Streak::class);
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'goal_user')->withTimestamps();
+        return $this->belongsTo(User::class);
     }
 }

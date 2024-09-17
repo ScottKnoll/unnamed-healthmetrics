@@ -10,10 +10,12 @@ return new class extends Migration
     {
         Schema::create('goals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('goal');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('goal_title');
             $table->string('category');
             $table->json('smart_goals');
+            $table->date('goal_start')->nullable();
+            $table->date('goal_end')->nullable();
             $table->timestamps();
         });
     }

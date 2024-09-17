@@ -20,14 +20,18 @@ class GoalController extends Controller
         ]);
     }
 
-    public function create($category = null)
+    public function create()
     {
-        $validCategories = auth()->user()->getCategories();
+        $categories = auth()->user()->getCategories();
+        $selectedCategory = request()->query('category', 'social');
 
-        $category = in_array($category, $validCategories) ? $category : 'social';
+        if (!in_array($selectedCategory, $categories)) {
+            $selectedCategory = 'social';
+        }
 
         return view('goals.create', [
-            'category' => $category
+            'categories' => $categories,
+            'selectedCategory' => $selectedCategory,
         ]);
     }
 
@@ -35,7 +39,9 @@ class GoalController extends Controller
     {
         $validated = request()->validate([
             'category' => 'required',
-            'goal' => 'required|max:255',
+            'goal_title' => 'required|max:255',
+            'goal_start' => 'nullable|date',
+            'goal_end' => 'nullable|date',
             'smart_goals' => 'required|array',
             'smart_goals.specific' => 'nullable',
             'smart_goals.measurable' => 'nullable',
@@ -44,11 +50,11 @@ class GoalController extends Controller
             'smart_goals.time-based' => 'nullable',
         ]);
 
-        $validated['user_id'] = auth()->id();
+        $goal = auth()->user()->goals()->create($validated);
 
-        Goal::create($validated);
-
-        return redirect('/goals');
+        return redirect()->route('goals.index', [
+            'category' => $goal->category
+        ]);
     }
 
     public function show(Goal $goal)

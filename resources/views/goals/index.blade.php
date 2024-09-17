@@ -45,7 +45,7 @@
                             <p class="text-sm font-semibold leading-6 text-gray-900">
                                 <a href="/goals/{{ $goal->id }}">
                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
-                                    {{ $goal->title }}
+                                    {{ $goal->goal_title }}
                                 </a>
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
@@ -66,7 +66,7 @@
             @empty
                 <li class="flex items-center justify-center py-5">
                     <div class="text-center">
-                        <x-svg.user-circle class="w-12 h-12 mx-auto bg-gray-400 rounded-full text-gray-50" />
+                        <x-svg.check-badge class="w-12 h-12 mx-auto" />
                         <h3 class="mt-2 text-sm font-semibold text-gray-900">No goals for this category</h3>
                         <p class="mt-1 text-sm text-gray-500">Get started by creating a goal.</p>
                     </div>

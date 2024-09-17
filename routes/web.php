@@ -16,8 +16,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tasks', TaskController::class);
     // Route::resource('goals', GoalController::class);
-    Route::get('/goals/create/{category?}', [GoalController::class, 'create'])->name('goals.create');
+    Route::get('/goals/create', [GoalController::class, 'create'])->name('goals.create');
     Route::get('/goals/{goal}/edit', [GoalController::class, 'edit'])->name('goals.edit');
+    Route::post('/goals', [GoalController::class, 'store'])->name('goals.store');
     Route::put('/goals/{goal}', [GoalController::class, 'update'])->name('goals.update');
     Route::get('/goals/{goal}', [GoalController::class, 'show'])->name('goals.show');
     Route::get('/goals', [GoalController::class, 'index'])->name('goals.index');
