@@ -9,7 +9,7 @@ class Goal extends Model
     protected $fillable = [
         'user_id',
         'category',
-        'goal_title',
+        'title',
         'smart_goals',
         'goal_start',
         'goal_end',
@@ -22,6 +22,11 @@ class Goal extends Model
     public function metrics()
     {
         return $this->hasMany(Metric::class);
+    }
+
+    public function milestones()
+    {
+        return $this->hasMany(Milestone::class);
     }
 
     public function streaks()

@@ -50,9 +50,9 @@
                             </div>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3">
-                                    <x-label class="mb-2" for="goal">Goal:</x-label>
-                                    <x-input id="goal" name="goal" :value="old('goal', $goal->goal)"></x-input>
-                                    <x-input-error :messages="$errors->get('goal')" class="mt-2" />
+                                    <x-label class="mb-2" for="title">Goal:</x-label>
+                                    <x-input id="title" name="title" :value="old('title', $goal->title)"></x-input>
+                                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                             </div>
                         </div>

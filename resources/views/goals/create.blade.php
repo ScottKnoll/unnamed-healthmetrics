@@ -130,10 +130,9 @@
                             </div>
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="col-span-full">
-                                    <x-label class="mb-2" for="goal_title">Goal</x-label>
-                                    <x-input type="text" id="goal_title" name="goal_title"
-                                        :value="old('goal_title')"></x-input>
-                                    <x-input-error :messages="$errors->get('goal_title')" class="mt-2" />
+                                    <x-label class="mb-2" for="title">Goal</x-label>
+                                    <x-input type="text" id="title" name="title" :value="old('title')"></x-input>
+                                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                                 <div class="col-span-1">
                                     <x-label class="mb-2" for="goal_start">Goal Start</x-label>

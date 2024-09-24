@@ -39,7 +39,7 @@ class GoalController extends Controller
     {
         $validated = request()->validate([
             'category' => 'required',
-            'goal_title' => 'required|max:255',
+            'title' => 'required|max:255',
             'goal_start' => 'nullable|date',
             'goal_end' => 'nullable|date',
             'smart_goals' => 'required|array',

@@ -45,7 +45,7 @@
                             <p class="text-sm font-semibold leading-6 text-gray-900">
                                 <a href="/goals/{{ $goal->id }}">
                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
-                                    {{ $goal->goal_title }}
+                                    {{ $goal->title }}
                                 </a>
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
