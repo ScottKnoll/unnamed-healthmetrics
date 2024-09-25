@@ -19,19 +19,14 @@ class Goal extends Model
         'smart_goals' => 'array',
     ];
 
-    public function metrics()
+    public function habits()
     {
-        return $this->hasMany(Metric::class);
+        return $this->hasMany(Habit::class);
     }
 
     public function milestones()
     {
         return $this->hasMany(Milestone::class);
-    }
-
-    public function streaks()
-    {
-        return $this->hasMany(Streak::class);
     }
 
     public function user()

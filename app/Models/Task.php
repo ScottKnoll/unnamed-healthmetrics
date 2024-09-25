@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     protected $fillable = [
-        'user_id',
-        'name',
+        'milestone_id',
+        'title',
         'description',
         'target_date',
+        'is_completed',
     ];
 
-    public function user()
+    public function milestone()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Milestone::class);
     }
 }

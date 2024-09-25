@@ -8,16 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('goal_user', function (Blueprint $table) {
+        Schema::create('milestones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('goal_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->date('target_date')->nullable();
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('goal_user');
+        Schema::dropIfExists('milestones');
     }
 };

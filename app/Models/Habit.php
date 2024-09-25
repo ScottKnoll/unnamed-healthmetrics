@@ -8,22 +8,19 @@ class Habit extends Model
 {
     protected $fillable = [
         'user_id',
-        'name',
-        'description'
+        'goal_id',
+        'title',
+        'description',
+        'is_completed',
     ];
 
-    public function metrics()
+    public function goal()
     {
-        return $this->hasMany(Metric::class);
+        return $this->belongsTo(Goal::class);
     }
 
-    public function streaks()
+    public function user()
     {
-        return $this->hasMany(Streak::class);
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'habit_user')->withTimestamps();
+        return $this->belongsTo(User::class);
     }
 }

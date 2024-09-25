@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Milestone extends Model
@@ -11,8 +10,8 @@ class Milestone extends Model
         'goal_id',
         'title',
         'description',
-        'due_date',
-        'is_completed'
+        'target_date',
+        'is_completed',
     ];
 
     public function goal()

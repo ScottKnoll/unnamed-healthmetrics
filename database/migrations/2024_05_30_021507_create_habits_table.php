@@ -11,9 +11,11 @@ return new class extends Migration
         Schema::create('habits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name');
+            $table->foreignId('goal_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->boolean('completed')->default(false);
+            $table->string('frequency')->default('daily');
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }

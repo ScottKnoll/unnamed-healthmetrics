@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable;
 
     protected $fillable = [
         'name',
@@ -36,22 +35,7 @@ class User extends Authenticatable
 
     public function habits()
     {
-        return $this->belongsToMany(Habit::class, 'habit_user')->withTimestamps();
-    }
-
-    public function metrics()
-    {
-        return $this->hasMany(Metric::class);
-    }
-
-    public function streaks()
-    {
-        return $this->hasMany(Streak::class);
-    }
-
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Habit::class);
     }
 
     public function getCategories()
