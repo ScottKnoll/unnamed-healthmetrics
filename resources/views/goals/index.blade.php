@@ -4,8 +4,6 @@
             <div class="md:flex md:items-center md:justify-between">
                 <h3 class="text-base font-semibold leading-6 text-gray-900">Goals</h3>
                 <div class="flex mt-3 md:absolute md:right-0 md:top-3 md:mt-0 gap-x-4">
-                    <button type="button"
-                        class="inline-flex items-center px-3 py-2 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Share</button>
                     <x-button href="/goals/create" type="button" styles="indigo">Create</x-button>
                 </div>
             </div>
