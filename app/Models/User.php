@@ -42,11 +42,11 @@ class User extends Authenticatable
     {
         return [
             'social',
-            'career',
-            'physical',
+            'career_finance',
+            'health_fitness',
             'family',
-            'leisure',
-            'personality',
+            'hobbies',
+            'personal_development',
             'other',
         ];
     }

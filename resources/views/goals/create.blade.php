@@ -3,83 +3,19 @@
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
             <aside class="px-2 py-6 sm:px-6 lg:col-span-3 lg:px-0 lg:py-0">
                 <nav class="space-y-1">
-                    <a href="{{ route('goals.create', ['category' => $category]) }}" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $selectedCategory === $category,
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $selectedCategory !== $category,
-                    ])>
-                        <x-svg.user-group
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Social</span>
-                    </a>
-                    <a href="/goals/create/career" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'career',
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'career',
-                    ])>
-                        <x-svg.briefcase
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Career</span>
-                    </a>
-                    <a href="/goals/create/physical" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'physical',
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'physical',
-                    ])>
-                        <x-svg.scale
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Physical</span>
-                    </a>
-                    <a href="/goals/create/family" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'family',
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'family',
-                    ])>
-                        <x-svg.heart
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Family</span>
-                    </a>
-                    <a href="/goals/create/leisure" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'leisure',
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'leisure',
-                    ])>
-                        <x-svg.music-note
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Leisure</span>
-                    </a>
-                    <a href="/goals/create/personality" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'personality',
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'personality',
-                    ])>
-                        <x-svg.happy-face
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Personality</span>
-                    </a>
-                    <a href="/goals/create/other" @class([
-                        'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-                        'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                            $category === 'other',
-                        'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                            $category !== 'other',
-                    ])>
-                        <x-svg.question-mark-circle
-                            class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                        <span class="truncate">Other</span>
-                    </a>
+                    @foreach ($categories as $category)
+                        <a href="{{ route('goals.create', ['category' => $category]) }}" @class([
+                            'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
+                            'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
+                                $selectedCategory === $category,
+                            'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
+                                $selectedCategory !== $category,
+                        ])>
+                            <x-dynamic-component :component="'svg.' . str_replace(' ', '-', strtolower($category))"
+                                class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
+                            <span class="truncate">{{ ucfirst($category) }}</span>
+                        </a>
+                    @endforeach
                 </nav>
             </aside>
             <div class="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
@@ -98,12 +34,12 @@
                                             activities, or building a social support network.
                                         @break
 
-                                        @case('career')
+                                        @case('career_finance')
                                             Career goals might focus on achieving professional milestones or enhancing
                                             job-related skills.
                                         @break
 
-                                        @case('physical')
+                                        @case('health_fitness')
                                             Physical goals often involve fitness achievements, health improvements or other
                                             bodily goals.
                                         @break
@@ -113,11 +49,11 @@
                                             or enhancing home life.
                                         @break
 
-                                        @case('leisure')
+                                        @case('hobbies')
                                             Leisure goals can relate to hobbies, travel, or other recreational activities.
                                         @break
 
-                                        @case('personality')
+                                        @case('personal_development')
                                             Personality goals may involve personal development, such as becoming more patient or
                                             organized.
                                         @break

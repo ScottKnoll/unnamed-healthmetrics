@@ -25,10 +25,6 @@ class GoalController extends Controller
         $categories = auth()->user()->getCategories();
         $selectedCategory = request()->query('category', 'social');
 
-        if (!in_array($selectedCategory, $categories)) {
-            $selectedCategory = 'social';
-        }
-
         return view('goals.create', [
             'categories' => $categories,
             'selectedCategory' => $selectedCategory,
