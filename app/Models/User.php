@@ -41,13 +41,13 @@ class User extends Authenticatable
     public function getCategories()
     {
         return [
-            'social',
-            'career_finance',
-            'health_fitness',
-            'family',
-            'hobbies',
-            'personal_development',
-            'other',
+            'social' => 'Social',
+            'career-finance' => 'Career & Finance',
+            'health-fitness' => 'Health & Fitness',
+            'family' => 'Family',
+            'hobbies' => 'Hobbies',
+            'personal-development' => 'Personal Development',
+            'other' => 'Other',
         ];
     }
 }

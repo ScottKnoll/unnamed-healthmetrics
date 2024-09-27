@@ -9,25 +9,35 @@ class GoalController extends Controller
     public function index()
     {
         $categories = auth()->user()->getCategories();
-        $currentCategory = request()->query('category');
+        $currentCategorySlug = request()->query('category', 'all');
 
-        $goals = Goal::where('category', $currentCategory)->get();
+        if ($currentCategorySlug === 'all') {
+            $goals = Goal::all();
+        } else {
+            if (!array_key_exists($currentCategorySlug, $categories)) {
+                abort(404, 'Category not found.');
+            }
+            $currentCategoryName = $categories[$currentCategorySlug];
+            $goals = Goal::where('category', $currentCategoryName)->get();
+        }
 
         return view('goals.index', [
             'goals' => $goals,
             'categories' => $categories,
-            'currentCategory' => $currentCategory,
+            'currentCategory' => $currentCategorySlug,
         ]);
     }
 
     public function create()
     {
         $categories = auth()->user()->getCategories();
-        $selectedCategory = request()->query('category', 'social');
+        $selectedCategorySlug = request()->query('category', 'social');
+        $selectedCategory = $categories[$selectedCategorySlug] ?? 'Default Category';
 
         return view('goals.create', [
             'categories' => $categories,
             'selectedCategory' => $selectedCategory,
+            'selectedCategorySlug' => $selectedCategorySlug,
         ]);
     }
 

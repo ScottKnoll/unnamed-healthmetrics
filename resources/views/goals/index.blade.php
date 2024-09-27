@@ -1,31 +1,36 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="relative pb-5 border-b border-gray-200 sm:pb-0">
+        <div class="relative pb-5 sm:pb-0">
             <div class="md:flex md:items-center md:justify-between">
                 <h3 class="text-base font-semibold leading-6 text-gray-900">Goals</h3>
                 <div class="flex mt-3 md:absolute md:right-0 md:top-3 md:mt-0 gap-x-4">
-                    <x-button href="/goals/create" type="button" styles="indigo">Create</x-button>
+                    <x-button href="{{ route('goals.create') }}" type="button" styles="indigo">Create</x-button>
                 </div>
             </div>
             <div class="mt-4">
                 <div class="sm:hidden">
-                    <label for="current-tab" class="sr-only">Select a tab</label>
-                    <select id="current-tab" name="current-tab"
+                    <select id="current-tab" name="current-tab" onchange="window.location.href='?category='+this.value"
                         class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600">
-                        @foreach ($categories as $category)
-                            <option value="{{ $category }}" {{ $currentCategory === $category ? 'selected' : '' }}>
-                                {{ ucfirst($category) }}
+                        <option value="all" {{ $currentCategory === 'all' ? 'selected' : '' }}>All Goals</option>
+                        @foreach ($categories as $slug => $name)
+                            <option value="{{ $slug }}" {{ $currentCategory === $slug ? 'selected' : '' }}>
+                                {{ $name }}
                             </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="hidden sm:block">
                     <nav class="flex -mb-px space-x-8">
-                        @foreach ($categories as $category)
-                            <a href="?category={{ $category }}"
+                        <a href="?category=all"
+                            class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium
+                            {{ $currentCategory === 'all' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
+                            All
+                        </a>
+                        @foreach ($categories as $slug => $name)
+                            <a href="?category={{ $slug }}"
                                 class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium
-                        {{ $currentCategory === $category ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
-                                {{ ucfirst($category) }}
+                                {{ $currentCategory === $slug ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
+                                {{ $name }}
                             </a>
                         @endforeach
                     </nav>

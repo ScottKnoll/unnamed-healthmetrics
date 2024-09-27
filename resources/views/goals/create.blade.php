@@ -3,17 +3,15 @@
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
             <aside class="px-2 py-6 sm:px-6 lg:col-span-3 lg:px-0 lg:py-0">
                 <nav class="space-y-1">
-                    @foreach ($categories as $category)
-                        <a href="{{ route('goals.create', ['category' => $category]) }}" @class([
+                    @foreach ($categories as $slug => $name)
+                        <a href="{{ route('goals.create', ['category' => $slug]) }}" @class([
                             'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
                             'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' =>
-                                $selectedCategory === $category,
+                                $selectedCategorySlug === $slug,
                             'text-gray-900 hover:bg-gray-50 hover:text-gray-900' =>
-                                $selectedCategory !== $category,
+                                $selectedCategorySlug !== $slug,
                         ])>
-                            <x-dynamic-component :component="'svg.' . str_replace(' ', '-', strtolower($category))"
-                                class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-indigo-500 group-hover:text-indigo-500" />
-                            <span class="truncate">{{ ucfirst($category) }}</span>
+                            <span class="truncate">{{ $name }}</span>
                         </a>
                     @endforeach
                 </nav>
@@ -34,12 +32,12 @@
                                             activities, or building a social support network.
                                         @break
 
-                                        @case('career_finance')
+                                        @case('career-finance')
                                             Career goals might focus on achieving professional milestones or enhancing
                                             job-related skills.
                                         @break
 
-                                        @case('health_fitness')
+                                        @case('health-fitness')
                                             Physical goals often involve fitness achievements, health improvements or other
                                             bodily goals.
                                         @break
@@ -53,7 +51,7 @@
                                             Leisure goals can relate to hobbies, travel, or other recreational activities.
                                         @break
 
-                                        @case('personal_development')
+                                        @case('personal-development')
                                             Personality goals may involve personal development, such as becoming more patient or
                                             organized.
                                         @break
