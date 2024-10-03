@@ -43,12 +43,13 @@ class GoalController extends Controller
 
     public function store()
     {
+        $categories = auth()->user()->getCategories();
         $validated = request()->validate([
             'category' => 'required',
             'title' => 'required|max:255',
             'goal_start' => 'nullable|date',
             'goal_end' => 'nullable|date',
-            'smart_goals' => 'required|array',
+            'smart_goals' => 'nullable|array',
             'smart_goals.specific' => 'nullable',
             'smart_goals.measurable' => 'nullable',
             'smart_goals.achievable' => 'nullable',
@@ -58,8 +59,10 @@ class GoalController extends Controller
 
         $goal = auth()->user()->goals()->create($validated);
 
+        $categorySlug = array_search($goal->category, $categories);
+
         return redirect()->route('goals.index', [
-            'category' => $goal->category
+            'category' => $categorySlug
         ]);
     }
 

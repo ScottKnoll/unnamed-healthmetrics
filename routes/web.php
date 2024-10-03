@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GoalController;
+use App\Http\Controllers\GoalMilestoneController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tasks', TaskController::class);
     Route::resource('goals', GoalController::class)->except('destroy');
+    Route::resource('goals.milestones', GoalMilestoneController::class);
     // Route::get('/goals/create', [GoalController::class, 'create'])->name('goals.create');
     // Route::get('/goals/{goal}/edit', [GoalController::class, 'edit'])->name('goals.edit');
     // Route::post('/goals', [GoalController::class, 'store'])->name('goals.store');

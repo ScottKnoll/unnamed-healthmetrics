@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('category');
-            $table->json('smart_goals');
+            $table->json('smart_goals')->nullable();
             $table->date('goal_start')->nullable();
             $table->date('goal_end')->nullable();
             $table->timestamps();
