@@ -42,9 +42,9 @@
             @empty
                 <li class="flex items-center justify-center py-5">
                     <div class="text-center">
-                        <x-svg.user-circle class="w-12 h-12 mx-auto bg-gray-400 rounded-full text-gray-50" />
+                        <x-svg.clipboard-document-list class="w-12 h-12 mx-auto text-gray-400" />
                         <h3 class="mt-2 text-sm font-semibold text-gray-900">No tasks for this category</h3>
-                        <p class="mt-1 text-sm text-gray-500">Get started by creating a goal.</p>
+                        <p class="mt-1 text-sm text-gray-500">Get started by creating a task.</p>
                     </div>
                 </li>
             @endforelse

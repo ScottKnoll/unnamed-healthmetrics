@@ -5,7 +5,7 @@
                 {{ $goal->title }}
             </h2>
             <div class="inline-flex rounded-md shadow-sm isolate">
-                <x-button href="/milestones/create" styles="indigo">
+                <x-button href="/goals/{{ $goal->id }}/milestones/create" styles="indigo">
                     Create Milestone
                 </x-button>
             </div>
