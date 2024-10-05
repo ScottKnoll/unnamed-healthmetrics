@@ -9,7 +9,7 @@ class GoalMilestoneController extends Controller
 {
     public function create(Goal $goal)
     {
-        return view('goal.milestones.create', [
+        return view('goals.milestones.create', [
             'goal' => $goal
         ]);
     }
@@ -25,16 +25,8 @@ class GoalMilestoneController extends Controller
 
         $validated['goal_id'] = $goal->id;
 
-        $milestone = Milestone::create($validated);
+        Milestone::create($validated);
 
-        return redirect('/goals/' . $goal->id . '/milestones/' . $milestone->id);
-    }
-
-    public function show(Goal $goal, Milestone $milestone)
-    {
-        return view('milestones.show', [
-            'goal' => $goal,
-            'milestone' => $milestone
-        ]);
+        return redirect('/goals/' . $goal->id);
     }
 }

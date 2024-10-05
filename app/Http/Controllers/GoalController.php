@@ -70,6 +70,7 @@ class GoalController extends Controller
     {
         return view('goals.show', [
             'goal' => $goal,
+            'milestones' => $goal->milestones,
         ]);
     }
 

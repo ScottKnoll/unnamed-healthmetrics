@@ -14,6 +14,10 @@ class Milestone extends Model
         'is_completed',
     ];
 
+    protected $casts = [
+        'target_date' => 'datetime',
+    ];
+
     public function goal()
     {
         return $this->belongsTo(Goal::class);
