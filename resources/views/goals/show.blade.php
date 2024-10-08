@@ -11,14 +11,14 @@
             </div>
         </div>
     </x-slot>
-    <div class="flex items-center justify-between mt-8 sm:mt-12">
-        <h2 class="text-base font-semibold leading-6 text-gray-900">
-            Milestones
-        </h2>
-    </div>
     <x-container>
+        <div class="flex items-center justify-between mt-4 sm:mt-6">
+            <h2 class="text-base font-semibold leading-6 text-gray-900">
+                Milestones
+            </h2>
+        </div>
         <ul role="list"
-            class="overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+            class="mt-6 overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
             @forelse ($goal->milestones as $milestone)
                 <li class="relative flex justify-between px-4 py-5 gap-x-6 hover:bg-gray-50 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
@@ -40,28 +40,29 @@
                                 {{ $milestone->target_date->format('M. d, Y') }}
                             </p>
                         </div>
-                        <x-svg.chevron-right class="flex-none w-5 h-5 text-gray-400" />
-                    </div>
-                    <div class="relative flex items-center">
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                <button type="button" class="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
-                                    <x-svg.ellipsis-vertical class="w-5 h-5" />
-                                </button>
-                            </x-slot>
-                            <x-slot name="content">
-                                <x-dropdown-link href="/people/{{ $member->id }}/edit">
-                                    Edit
-                                </x-dropdown-link>
-                                <form action="/teams/{{ $team->id }}/members/{{ $member->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-100"
-                                        onclick="return confirm('Are you sure you want to remove {{ $milestone->title }}?');">Remove</button>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
+                        <div class="relative flex items-center">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <button type="button" class="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
+                                        <x-svg.ellipsis-vertical class="w-5 h-5" />
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link
+                                        href="/goals/{{ $goal->id }}/milestones/{{ $milestone->id }}/edit">
+                                        Edit
+                                    </x-dropdown-link>
+                                    <form action="/goals/{{ $goal->id }}/milestones/{{ $milestone->id }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-100"
+                                            onclick="return confirm('Are you sure you want to delete {{ $milestone->title }}?');">Delete</button>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
                     </div>
                 </li>
             @empty

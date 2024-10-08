@@ -29,4 +29,19 @@ class GoalMilestoneController extends Controller
 
         return redirect('/goals/' . $goal->id);
     }
+
+    public function edit(Goal $goal, Milestone $milestone)
+    {
+        return view('goals.milestones.edit', [
+            'goal' => $goal,
+            'milestone' => $milestone,
+        ]);
+    }
+
+    public function destroy(Goal $goal, Milestone $milestone)
+    {
+        $milestone->delete();
+
+        return redirect('/goals/' . $goal->id);
+    }
 }
