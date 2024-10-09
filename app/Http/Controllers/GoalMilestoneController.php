@@ -38,6 +38,20 @@ class GoalMilestoneController extends Controller
         ]);
     }
 
+    public function update(Goal $goal, Milestone $milestone)
+    {
+        $validated = request()->validate([
+            'title' => 'required|max:255',
+            'target_date' => 'nullable|date',
+            'description' => 'nullable|max:255',
+            'is_completed' => 'nullable|boolean',
+        ]);
+
+        $milestone->update($validated);
+
+        return redirect('/goals/' . $goal->id);
+    }
+
     public function destroy(Goal $goal, Milestone $milestone)
     {
         $milestone->delete();

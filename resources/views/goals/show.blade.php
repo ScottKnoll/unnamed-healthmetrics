@@ -20,22 +20,24 @@
         <ul role="list"
             class="mt-6 overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
             @forelse ($goal->milestones as $milestone)
-                <li class="relative flex justify-between px-4 py-5 gap-x-6 hover:bg-gray-50 sm:px-6">
+                <li class="relative flex justify-between px-4 py-5 gap-x-6 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
                         <div class="flex-auto min-w-0">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
                                 {{ $milestone->title }}
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
-                                <a href="mailto:leslie.alexander@example.com"
-                                    class="relative truncate hover:underline">{{ $milestone->description ?? 'N/A' }}</a>
+                                {{ $milestone->description ?? 'N/A' }}
                             </p>
                         </div>
                     </div>
                     <div class="flex items-center shrink-0 gap-x-4">
                         <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">{{ $milestone->created_at->format('M. d, Y') }}
-                            </p>
+                            @if ($milestone->is_completed === 1)
+                                <x-badge color="green">Completed</x-badge>
+                            @else
+                                <x-badge color="blue">In Progress</x-badge>
+                            @endif
                             <p class="mt-1 text-xs leading-5 text-gray-500">Target Date:
                                 {{ $milestone->target_date->format('M. d, Y') }}
                             </p>

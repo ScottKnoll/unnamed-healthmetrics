@@ -40,7 +40,7 @@
     </x-slot>
     <x-container>
         <ul role="list"
-            class="overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+            class="mt-8 overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
             @forelse ($goals as $goal)
                 <li class="relative flex justify-between px-4 py-5 gap-x-6 hover:bg-gray-50 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
@@ -52,8 +52,7 @@
                                 </a>
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
-                                <a href="mailto:leslie.alexander@example.com"
-                                    class="relative truncate hover:underline">{{ $goal->category ?? 'N/A' }}</a>
+                                {{ $goal->category ?? 'N/A' }}
                             </p>
                         </div>
                     </div>

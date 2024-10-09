@@ -32,8 +32,13 @@
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-                        <x-button type="submit" styles="indigo">Save</x-button>
+                    <div class="flex items-center justify-between">
+                        <div class="px-4 py-3 text-right sm:px-6">
+                            <x-button href="" styles="white">+ Add Task</x-button>
+                        </div>
+                        <div class="px-4 py-3 text-right sm:px-6">
+                            <x-button type="submit" styles="indigo">Save</x-button>
+                        </div>
                     </div>
                 </div>
             </form>
