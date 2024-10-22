@@ -68,6 +68,8 @@ class GoalController extends Controller
 
     public function show(Goal $goal)
     {
+        $goal->load('milestones.tasks');
+
         return view('goals.show', [
             'goal' => $goal,
             'milestones' => $goal->milestones,
