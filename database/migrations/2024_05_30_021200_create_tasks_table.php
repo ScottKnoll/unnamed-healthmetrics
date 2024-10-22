@@ -13,7 +13,8 @@ return new class extends Migration
             $table->foreignId('milestone_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->date('target_date');
+            $table->integer('current_count')->default(0);
+            $table->integer('target_count')->nullable();
             $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });

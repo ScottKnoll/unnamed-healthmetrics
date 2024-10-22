@@ -19,8 +19,9 @@
                     <h2 class="text-base font-semibold leading-6 text-gray-900">
                         Tasks
                     </h2>
-                    <div class="inline-flex rounded-md shadow-sm">
-                        <x-button href="/milestones/{{ $milestone->id }}/tasks/create" styles="indigo">
+                    <div x-data="{ openTaskModal: false, selectedMilestoneId: null }" class="inline-flex rounded-md shadow-sm">
+                        <x-button @click="openTaskModal = true; selectedMilestoneId = {{ $milestone->id }}"
+                            styles="indigo">
                             Create Task
                         </x-button>
                     </div>

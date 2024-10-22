@@ -20,8 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
     Route::resource('goals', GoalController::class)->except('destroy');
     Route::resource('goals.milestones', GoalMilestoneController::class)->except('index', 'show');
-    // Route::resource('milestones.tasks', TaskController::class)->except(['index', 'show']);
-
+    Route::resource('milestones.tasks', TaskController::class)->except(['index', 'show']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

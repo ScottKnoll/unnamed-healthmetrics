@@ -10,7 +10,8 @@ class Task extends Model
         'milestone_id',
         'title',
         'description',
-        'target_date',
+        'current_count',
+        'target_count',
         'is_completed',
     ];
 
