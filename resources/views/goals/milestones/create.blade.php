@@ -26,10 +26,10 @@
                             </div>
                         </div>
                         <div class="col-span-full">
-                            <x-label class="mb-2" for="description">Description</x-label>
-                            <x-textarea type="text" id="description" name="description" :value="old('description')"
+                            <x-label class="mb-2" for="notes">Notes</x-label>
+                            <x-textarea type="text" id="notes" name="notes" :value="old('notes')"
                                 rows="4"></x-textarea>
-                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
                     </div>
                     <div class="flex items-center justify-between">

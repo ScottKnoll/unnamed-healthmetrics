@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Habit extends Model
 {
@@ -10,8 +11,10 @@ class Habit extends Model
         'user_id',
         'goal_id',
         'title',
-        'description',
-        'is_completed',
+        'notes',
+        'frequency',
+        'difficulty',
+        'points',
     ];
 
     public function goal()
@@ -22,5 +25,10 @@ class Habit extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function completions(): HasMany
+    {
+        return $this->hasMany(HabitCompletion::class);
     }
 }

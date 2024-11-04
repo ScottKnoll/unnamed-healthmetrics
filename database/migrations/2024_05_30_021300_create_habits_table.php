@@ -13,10 +13,20 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('goal_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('frequency')->default('daily');
-            $table->boolean('is_completed')->default(false);
+            $table->text('notes')->nullable();
+            $table->enum('frequency', ['daily', 'weekly', 'monthly'])->default('daily');
+            $table->integer('current_streak')->default(0);
+            $table->integer('max_streak')->default(0);
             $table->timestamps();
+        });
+
+        Schema::create('habit_completions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('habit_id')->constrained()->onDelete('cascade');
+            $table->date('completed_on');
+            $table->timestamps();
+
+            $table->unique(['habit_id', 'completed_on']);
         });
     }
 

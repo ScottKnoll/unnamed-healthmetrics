@@ -8,9 +8,8 @@
     </x-slot>
     <x-container class="max-w-4xl">
         <div class="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
-            <form action="/goals/{{ $goal->id }}/milestones" method="POST">
+            <form action="/tasks" method="POST">
                 @csrf
-                <div class="hidden" value="{{ $goal->id }}"></div>
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                     <div class="px-4 py-6 space-y-6 bg-white sm:p-6">
                         <div class="grid grid-cols-2 gap-6">
@@ -26,10 +25,10 @@
                             </div>
                         </div>
                         <div class="col-span-full">
-                            <x-label class="mb-2" for="description">Description</x-label>
-                            <x-textarea type="text" id="description" name="description" :value="old('description')"
+                            <x-label class="mb-2" for="notes">Notes</x-label>
+                            <x-textarea type="text" id="notes" name="notes" :value="old('notes')"
                                 rows="4"></x-textarea>
-                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
                     </div>
                     <div class="flex items-center justify-between">

@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('goal_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->string('notes')->nullable();
             $table->date('target_date')->nullable();
             $table->boolean('is_completed')->default(false);
             $table->timestamps();

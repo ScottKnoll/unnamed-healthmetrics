@@ -9,7 +9,7 @@ class Task extends Model
     protected $fillable = [
         'milestone_id',
         'title',
-        'description',
+        'notes',
         'current_count',
         'target_count',
         'is_completed',
