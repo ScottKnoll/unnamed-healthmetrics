@@ -21,7 +21,7 @@ class Goal extends Model
 
     public function habits()
     {
-        return $this->hasMany(Habit::class);
+        return $this->belongsToMany(Habit::class)->withTimestamps();
     }
 
     public function milestones()

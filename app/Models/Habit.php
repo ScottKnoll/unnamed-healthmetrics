@@ -9,17 +9,23 @@ class Habit extends Model
 {
     protected $fillable = [
         'user_id',
-        'goal_id',
         'title',
         'notes',
         'frequency',
         'difficulty',
-        'points',
+        'current_streak',
+        'max_streak',
+        'target_count',
     ];
 
-    public function goal()
+    public function completions()
     {
-        return $this->belongsTo(Goal::class);
+        return $this->hasMany(HabitCompletion::class);
+    }
+
+    public function goals()
+    {
+        return $this->belongsToMany(Goal::class)->withTimestamps();
     }
 
     public function user()
@@ -27,8 +33,19 @@ class Habit extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function completions(): HasMany
+    public function getPointsAttribute()
     {
-        return $this->hasMany(HabitCompletion::class);
+        return match ($this->difficulty) {
+            'trivial' => 1,
+            'easy' => 2,
+            'medium' => 3,
+            'hard' => 4,
+            default => 1,
+        };
+    }
+
+    public function updateStreak()
+    {
+        //
     }
 }
