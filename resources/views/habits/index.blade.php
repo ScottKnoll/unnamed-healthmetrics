@@ -5,7 +5,7 @@
                 Habits
             </h2>
             <div class="inline-flex rounded-md shadow-sm isolate">
-                <x-button href="/tasks/create" styles="indigo">
+                <x-button href="/habits/create" styles="indigo">
                     Create Habit
                 </x-button>
             </div>
