@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\GoalMilestoneController;
 use App\Http\Controllers\HabitController;
@@ -12,10 +13,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('habits', HabitController::class)->except('destroy');
     Route::resource('tasks', TaskController::class);
     Route::resource('goals', GoalController::class)->except('destroy');

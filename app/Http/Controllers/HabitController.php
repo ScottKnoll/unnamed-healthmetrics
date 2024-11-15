@@ -29,27 +29,28 @@ class HabitController extends Controller
             'notes' => 'nullable',
             'frequency' => 'required|in:daily,weekly,monthly',
             'difficulty' => 'required|in:trivial,easy,medium,hard',
-            'goal_ids' => 'nullable|array',
-            'goal_ids.*' => 'exists:goals,id',
             'target_count' => 'nullable|integer|min:1',
             'reminder_time' => 'nullable',
             'category' => 'nullable|max:255',
             'target_date' => 'nullable|date',
         ]);
 
-        $habit = Habit::create($validated);
+        $validated['user_id'] = auth()->id();
+
+        Habit::create($validated);
 
         // add goals logic
 
-        return redirect('/habits/' . $habit->id);
+        return redirect('/habits');
     }
 
-    public function edit()
+    public function edit(Habit $habit)
     {
         $goals = auth()->user()->goals;
 
         return view('habits.edit', [
             'goals' => $goals,
+            'habit' => $habit,
         ]);
     }
 
@@ -60,8 +61,6 @@ class HabitController extends Controller
             'notes' => 'nullable',
             'frequency' => 'required|in:daily,weekly,monthly',
             'difficulty' => 'required|in:trivial,easy,medium,hard',
-            'goal_ids' => 'nullable|array',
-            'goal_ids.*' => 'exists:goals,id',
             'target_count' => 'nullable|integer|min:1',
             'reminder_time' => 'nullable',
             'category' => 'nullable|max:255',
@@ -72,6 +71,6 @@ class HabitController extends Controller
 
         // add goals detaching
 
-        return redirect('/habits/' . $habit->id);
+        return redirect('/habits');
     }
 }

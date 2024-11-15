@@ -19,21 +19,21 @@
                     <div class="flex min-w-0 gap-x-4">
                         <div class="flex-auto min-w-0">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                <a href="/tasks/{{ $habit->id }}">
+                                <a href="/habits/{{ $habit->id }}/edit">
                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
                                     {{ $habit->title }}
                                 </a>
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
                                 <a href="mailto:leslie.alexander@example.com"
-                                    class="relative truncate hover:underline">{{ $habit->category ?? 'N/A' }}</a>
+                                    class="relative truncate hover:underline">{{ $habit->notes ?? 'N/A' }}</a>
                             </p>
                         </div>
                     </div>
                     <div class="flex items-center shrink-0 gap-x-4">
                         <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">{{ $habit->created_at->format('M. d, Y') }}</p>
-                            <p class="mt-1 text-xs leading-5 text-gray-500">{{ $habit->updated_at->diffForHumans() }}
+                            <p class="text-sm leading-6 text-gray-900">Current Streak: {{ $habit->current_streak }}</p>
+                            <p class="mt-1 text-xs leading-5 text-gray-500">Max Streak: {{ $habit->max_streak }}
                             </p>
                         </div>
                         <x-svg.chevron-right class="flex-none w-5 h-5 text-gray-400" />

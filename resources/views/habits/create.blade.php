@@ -6,7 +6,6 @@
             </h2>
         </div>
     </x-slot>
-
     <x-container>
         <div class="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
             <form action="/habits" method="POST">
@@ -49,7 +48,7 @@
                             </x-select>
                             <x-input-error :messages="$errors->get('difficulty')" class="mt-2" />
                         </div>
-                        {{-- <div class="col-span-full">
+                        <div class="col-span-full">
                             <x-label for="goal_ids" class="mb-2">Associate with Goals</x-label>
                             <select id="goal_ids" name="goal_ids[]" multiple
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
@@ -61,11 +60,6 @@
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('goal_ids')" class="mt-2" />
-                        </div> --}}
-                        <div class="col-span-full">
-                            <x-label for="category" class="mb-2">Category</x-label>
-                            <x-input type="text" name="category" id="category" :value="old('category')" class="w-full" />
-                            <x-input-error :messages="$errors->get('category')" class="mt-2" />
                         </div>
                     </div>
                     <div class="px-4 py-3 text-right sm:px-6">

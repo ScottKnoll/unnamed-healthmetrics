@@ -72,14 +72,12 @@
                             </select>
                             <x-input-error :messages="$errors->get('goal_ids')" class="mt-2" />
                         </div> --}}
-                        <div class="col-span-full">
-                            <x-label for="category" class="mb-2">Category</x-label>
-                            <x-input type="text" id="category" name="category" :value="old('category', $habit->category)" class="w-full" />
-                            <x-input-error :messages="$errors->get('category')" class="mt-2" />
-                        </div>
                     </div>
                     <div class="px-4 py-3 text-right sm:px-6">
-                        <x-button type="submit" styles="indigo">Update Habit</x-button>
+                        <div class="flex items-center justify-end gap-x-6">
+                            <a href="/habits" class="font-semibold text-gray-900 text-sm/6">Cancel</a>
+                            <x-button type="submit" styles="indigo">Update Habit</x-button>
+                        </div>
                     </div>
                 </div>
             </form>
