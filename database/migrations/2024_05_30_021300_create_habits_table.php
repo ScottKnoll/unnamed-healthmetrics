@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('habits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('goal_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('notes')->nullable();
             $table->enum('frequency', ['daily', 'weekly', 'monthly'])->default('daily');

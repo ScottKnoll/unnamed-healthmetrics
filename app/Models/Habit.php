@@ -15,7 +15,6 @@ class Habit extends Model
         'difficulty',
         'current_streak',
         'max_streak',
-        'target_count',
     ];
 
     public function completions()

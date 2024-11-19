@@ -15,28 +15,37 @@
         <ul role="list"
             class="overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
             @forelse ($habits as $habit)
-                <li class="relative flex justify-between px-4 py-5 gap-x-6 hover:bg-gray-50 sm:px-6">
-                    <div class="flex min-w-0 gap-x-4">
+                <li class="relative flex items-center justify-between px-4 py-5 gap-x-6 hover:bg-gray-50 sm:px-6"
+                    x-data="habitComponent({{ $habit->id }}, {{ $habit->current_streak }}, {{ $habit->max_streak }})">
+                    <div class="flex items-center">
+                        <div :class="streakClass"
+                            class="flex items-center justify-center w-10 h-10 rounded-l-md bg-green-500">
+                            <button @click="incrementStreak" class="text-white text-xl font-bold" :disabled="isLoading"
+                                aria-label="Increment streak">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 items-center min-w-0 gap-x-4">
                         <div class="flex-auto min-w-0">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                <a href="/habits/{{ $habit->id }}/edit">
-                                    <span class="absolute inset-x-0 bottom-0 -top-px"></span>
-                                    {{ $habit->title }}
-                                </a>
+                                {{ $habit->title }}
                             </p>
                             <p class="flex mt-1 text-xs leading-5 text-gray-500">
-                                <a href="mailto:leslie.alexander@example.com"
-                                    class="relative truncate hover:underline">{{ $habit->notes ?? 'N/A' }}</a>
+                                {{ $habit->notes ?? 'N/A' }}
                             </p>
                         </div>
                     </div>
                     <div class="flex items-center shrink-0 gap-x-4">
                         <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Current Streak: {{ $habit->current_streak }}</p>
-                            <p class="mt-1 text-xs leading-5 text-gray-500">Max Streak: {{ $habit->max_streak }}
+                            <p class="text-sm leading-6 text-gray-900">Current Streak: <span
+                                    x-text="currentStreak"></span>
+                            </p>
+                            <p class="mt-1 text-xs leading-5 text-gray-500">Max Streak: <span x-text="maxStreak"></span>
                             </p>
                         </div>
-                        <x-svg.chevron-right class="flex-none w-5 h-5 text-gray-400" />
+                        <a href="/habits/{{ $habit->id }}/edit"
+                            class="text-sm text-indigo-600 hover:text-indigo-800">Edit</a>
                     </div>
                 </li>
             @empty
@@ -50,4 +59,50 @@
             @endforelse
         </ul>
     </x-container>
+    <script>
+        function habitComponent(id, initialCurrentStreak, initialMaxStreak) {
+            return {
+                currentStreak: initialCurrentStreak,
+                maxStreak: initialMaxStreak,
+                isLoading: false,
+                incrementStreak() {
+                    if (this.isLoading) return;
+                    this.isLoading = true;
+
+                    fetch(`/habits/${id}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                increment: 1
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            this.currentStreak = data.current_streak;
+                            this.maxStreak = data.max_streak;
+                        })
+                        .catch(error => {
+                            console.error('Increment Error:', error);
+                            alert('Failed to increment streak. Please try again.');
+                        })
+                        .finally(() => {
+                            this.isLoading = false;
+                        });
+                },
+                get streakClass() {
+                    if (this.currentStreak >= 10) {
+                        return 'bg-green-700';
+                    } else if (this.currentStreak >= 5) {
+                        return 'bg-green-500';
+                    } else {
+                        return 'bg-green-300';
+                    }
+                }
+            }
+        }
+    </script>
 </x-app-layout>
