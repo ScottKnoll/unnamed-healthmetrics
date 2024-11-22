@@ -19,14 +19,14 @@
                     x-data="habitComponent({{ $habit->id }}, {{ $habit->current_streak }}, {{ $habit->max_streak }})">
                     <div class="flex items-center">
                         <div :class="streakClass"
-                            class="flex items-center justify-center w-10 h-10 rounded-l-md bg-green-500">
-                            <button @click="incrementStreak" class="text-white text-xl font-bold" :disabled="isLoading"
+                            class="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-md">
+                            <button @click="incrementStreak" class="text-xl font-bold text-white" :disabled="isLoading"
                                 aria-label="Increment streak">
                                 +
                             </button>
                         </div>
                     </div>
-                    <div class="flex flex-1 items-center min-w-0 gap-x-4">
+                    <div class="flex items-center flex-1 min-w-0 gap-x-4">
                         <div class="flex-auto min-w-0">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
                                 {{ $habit->title }}
@@ -97,9 +97,9 @@
                     if (this.currentStreak >= 10) {
                         return 'bg-green-700';
                     } else if (this.currentStreak >= 5) {
-                        return 'bg-green-500';
+                        return 'bg-orange-400';
                     } else {
-                        return 'bg-green-300';
+                        return 'bg-gray-400';
                     }
                 }
             }

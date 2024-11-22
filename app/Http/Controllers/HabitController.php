@@ -56,15 +56,8 @@ class HabitController extends Controller
 
     public function update(Habit $habit)
     {
-
         if (request()->has('increment')) {
-            $habit->current_streak += 1;
-
-            if ($habit->current_streak > $habit->max_streak) {
-                $habit->max_streak = $habit->current_streak;
-            }
-
-            $habit->save();
+            $habit->incrementStreak();
 
             return response()->json([
                 'current_streak' => $habit->current_streak,

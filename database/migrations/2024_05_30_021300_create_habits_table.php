@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('difficulty', ['trivial', 'easy', 'medium', 'hard'])->default('trivial');
             $table->integer('current_streak')->default(0);
             $table->integer('max_streak')->default(0);
+            $table->timestamp('last_completed_at')->nullable();
             $table->timestamps();
         });
 

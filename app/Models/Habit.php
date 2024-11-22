@@ -15,6 +15,7 @@ class Habit extends Model
         'difficulty',
         'current_streak',
         'max_streak',
+        'last_completed_at',
     ];
 
     public function completions()
@@ -32,6 +33,24 @@ class Habit extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function incrementStreak()
+    {
+        if ($this->last_completed_at && $this->isBefore(now()->subDay())) {
+            $this->current_streak = 0;
+            $this->save();
+        } else {
+            $this->current_streak += 1;
+        }
+
+        if ($this->current_streak > $this->max_streak) {
+            $this->max_streak = $this->current_streak;
+        }
+
+        $this->last_completed_at = now();
+
+        $this->save();
+    }
+
     public function getPointsAttribute()
     {
         return match ($this->difficulty) {
@@ -41,10 +60,5 @@ class Habit extends Model
             'hard' => 4,
             default => 1,
         };
-    }
-
-    public function updateStreak()
-    {
-        //
     }
 }
