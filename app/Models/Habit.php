@@ -18,6 +18,10 @@ class Habit extends Model
         'last_completed_at',
     ];
 
+    protected $casts = [
+        'last_completed_at' => 'datetime',
+    ];
+
     public function completions()
     {
         return $this->hasMany(HabitCompletion::class);
@@ -35,9 +39,8 @@ class Habit extends Model
 
     public function incrementStreak()
     {
-        if ($this->last_completed_at && $this->isBefore(now()->subDay())) {
+        if ($this->last_completed_at && $this->last_completed_at->isBefore(now()->subDay())) {
             $this->current_streak = 0;
-            $this->save();
         } else {
             $this->current_streak += 1;
         }

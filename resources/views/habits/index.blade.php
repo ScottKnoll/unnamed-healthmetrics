@@ -77,10 +77,15 @@
                                 'Accept': 'application/json',
                             },
                             body: JSON.stringify({
-                                increment: 1
+                                increment: true
                             }),
                         })
-                        .then(response => response.json())
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
                         .then(data => {
                             this.currentStreak = data.current_streak;
                             this.maxStreak = data.max_streak;
