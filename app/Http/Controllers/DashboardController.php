@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Goal;
 use App\Models\Habit;
 
 class DashboardController extends Controller
@@ -10,6 +11,7 @@ class DashboardController extends Controller
     {
         return view('dashboard', [
             'habits' => Habit::all(),
+            'goals' => Goal::all(),
         ]);
     }
 }
