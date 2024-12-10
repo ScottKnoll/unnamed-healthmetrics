@@ -1,7 +1,7 @@
 <div x-data="{ open: false }" class="my-2 bg-white rounded-lg shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
     <h2>
         <button @click="open = !open" :aria-expanded="open"
-            class="flex items-center justify-between w-full px-4 py-5 sm:px-6"
+            class="flex items-center justify-between w-full px-4 py-5 sm:px-6 focus:outline-none"
             :class="{ 'bg-indigo-100 text-indigo-600 rounded-t-xl': open }">
             <div class="flex flex-col text-left">
                 <p class="text-base font-semibold leading-6 text-gray-900" :class="{ 'text-indigo-600': open }">
@@ -14,12 +14,12 @@
                 @endif
             </div>
             <div class="flex items-center">
-                <span x-show="!open" x-cloak>&plus;</span>
-                <span x-show="open" x-cloak>&minus;</span>
+                <x-svg.chevron-down x-show="!open" x-cloak class="size-5" />
+                <x-svg.chevron-up x-show="open" x-cloak class="size-5" />
             </div>
         </button>
     </h2>
-    <div x-show="open" x-collapse.duration.700ms>
+    <div x-show="open" x-collapse.duration.300ms class="px-4 py-5 sm:px-6">
         <div>
             {{ $slot }}
         </div>

@@ -12,13 +12,10 @@ class GoalController extends Controller
         $currentCategorySlug = request()->query('category', 'all');
 
         if ($currentCategorySlug === 'all') {
-            $goals = Goal::all();
+            $goals = Goal::with('milestones')->get();
         } else {
-            if (!array_key_exists($currentCategorySlug, $categories)) {
-                abort(404, 'Category not found.');
-            }
             $currentCategoryName = $categories[$currentCategorySlug];
-            $goals = Goal::where('category', $currentCategoryName)->get();
+            $goals = Goal::with('milestones')->where('category', $currentCategoryName)->get();
         }
 
         return view('goals.index', [
