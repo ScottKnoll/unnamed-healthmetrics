@@ -6,7 +6,7 @@
                 {{ $goal->title }}
             </h2>
             <div class="inline-flex rounded-md shadow-sm">
-                <x-button href="/goals/{{ $goal->id }}/milestones/create" styles="indigo">
+                <x-button href="{{ route('goals.milestones.create', $goal->id) }}" styles="indigo">
                     Create Milestone
                 </x-button>
             </div>
@@ -60,10 +60,11 @@
                                         </x-slot>
                                         <x-slot name="content">
                                             <x-dropdown-link
-                                                href="/milestones/{{ $milestone->id }}/tasks/{{ $task->id }}/edit">
+                                                href="{{ route('milestones.tasks.edit', ['milestone_id' => $milestone->id], ['task_id' => $task->id]) }}">
                                                 Edit
                                             </x-dropdown-link>
-                                            <form action="/milestones/{{ $milestone->id }}/tasks/{{ $task->id }}"
+                                            <form
+                                                action="{{ route('milestones.tasks.delete', ['milestone' => $milestone->id, 'task' => $task->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')

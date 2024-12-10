@@ -5,7 +5,7 @@
                 Plans
             </h2>
             <div class="inline-flex rounded-md shadow-sm isolate">
-                <x-button href="/plans/create" styles="indigo">
+                <x-button href="{{ route('plans.create') }}" styles="indigo">
                     Create Plan
                 </x-button>
             </div>
@@ -32,7 +32,7 @@
                             <x-svg.user-circle class="flex-none w-12 h-12 bg-gray-400 rounded-full text-gray-50" />
                             <div class="flex-auto min-w-0">
                                 <p class="text-sm font-semibold leading-6 text-gray-900">
-                                    <a href="/plans/{{ $plan->id }}">
+                                    <a href="{{ route('plans.show', $plan->id) }}">
                                         <span class="absolute inset-x-0 bottom-0 -top-px"></span>
                                         {{ $plan->title ?? 'N/A' }}
                                     </a>

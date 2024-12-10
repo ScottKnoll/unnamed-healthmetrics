@@ -5,7 +5,7 @@
                 Habits
             </h2>
             <div class="inline-flex rounded-md shadow-sm isolate">
-                <x-button href="/habits/create" styles="indigo">
+                <x-button href="{{ route('habits.create') }}" styles="indigo">
                     Create Habit
                 </x-button>
             </div>
@@ -44,7 +44,7 @@
                             <p class="mt-1 text-xs leading-5 text-gray-500">Max Streak: <span x-text="maxStreak"></span>
                             </p>
                         </div>
-                        <a href="/habits/{{ $habit->id }}/edit"
+                        <a href="/{{ route('habits.edit', $habit->id) }}"
                             class="text-sm text-indigo-600 hover:text-indigo-800">Edit</a>
                     </div>
                 </li>

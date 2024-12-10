@@ -24,7 +24,7 @@
             $btnClasses .= ' rounded px-2 py-1 text-xs';
             break;
         case 'md':
-            $btnClasses .= ' rounded px-2 py-1 text-sm';
+            $btnClasses .= ' px-2.5 py-1.5 text-sm rounded-md';
             break;
         case 'lg':
             $btnClasses .= ' rounded-lg px-6 py-4 text-lg';

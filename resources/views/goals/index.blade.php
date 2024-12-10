@@ -1,43 +1,46 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="relative pb-5 sm:pb-0">
-            <div class="md:flex md:items-center md:justify-between">
-                <h3 class="text-base font-semibold leading-6 text-gray-900">Goals</h3>
-                <div class="flex mt-3 md:absolute md:right-0 md:top-3 md:mt-0 gap-x-4">
-                    <x-button href="{{ route('goals.create') }}" type="button" styles="indigo">Create</x-button>
+    <div class="bg-white shadow dark:bg-gray-800">
+        <div class="px-4 pt-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="relative pb-5 sm:pb-0">
+                <div class="md:flex md:items-center md:justify-between">
+                    <h3 class="text-base font-semibold leading-6 text-gray-900">Goals</h3>
+                    <div class="flex mt-3 md:absolute md:right-0 md:top-3 md:mt-0 gap-x-4">
+                        <x-button href="{{ route('goals.create') }}" type="button" styles="indigo">Create</x-button>
+                    </div>
                 </div>
-            </div>
-            <div class="mt-4">
-                <div class="sm:hidden">
-                    <select id="current-tab" name="current-tab" onchange="window.location.href='?category='+this.value"
-                        class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600">
-                        <option value="all" {{ $currentCategory === 'all' ? 'selected' : '' }}>All Goals</option>
-                        @foreach ($categories as $slug => $name)
-                            <option value="{{ $slug }}" {{ $currentCategory === $slug ? 'selected' : '' }}>
-                                {{ $name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="hidden sm:block">
-                    <nav class="flex -mb-px space-x-8">
-                        <a href="?category=all"
-                            class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium
-                            {{ $currentCategory === 'all' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
-                            All
-                        </a>
-                        @foreach ($categories as $slug => $name)
-                            <a href="?category={{ $slug }}"
+                <div class="mt-4">
+                    <div class="sm:hidden">
+                        <select id="current-tab" name="current-tab"
+                            onchange="window.location.href='?category='+this.value"
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600">
+                            <option value="all" {{ $currentCategory === 'all' ? 'selected' : '' }}>All Goals</option>
+                            @foreach ($categories as $slug => $name)
+                                <option value="{{ $slug }}" {{ $currentCategory === $slug ? 'selected' : '' }}>
+                                    {{ $name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="hidden sm:block">
+                        <nav class="flex -mb-px space-x-8">
+                            <a href="?category=all"
                                 class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium
-                                {{ $currentCategory === $slug ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
-                                {{ $name }}
+                            {{ $currentCategory === 'all' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
+                                All
                             </a>
-                        @endforeach
-                    </nav>
+                            @foreach ($categories as $slug => $name)
+                                <a href="?category={{ $slug }}"
+                                    class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium
+                                {{ $currentCategory === $slug ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }}">
+                                    {{ $name }}
+                                </a>
+                            @endforeach
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
-    </x-slot>
+    </div>
     <x-container>
         <ul role="list"
             class="mt-8 overflow-hidden bg-white divide-y divide-gray-100 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
@@ -46,7 +49,7 @@
                     <div class="flex min-w-0 gap-x-4">
                         <div class="flex-auto min-w-0">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                <a href="/goals/{{ $goal->id }}">
+                                <a href="{{ route('goals.show', $goal->id) }}">
                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
                                     {{ $goal->title }}
                                 </a>

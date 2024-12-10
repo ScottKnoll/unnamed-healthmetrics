@@ -5,7 +5,7 @@
                 Tasks
             </h2>
             <div class="inline-flex rounded-md shadow-sm isolate">
-                <x-button href="/tasks/create" styles="indigo">
+                <x-button href="{{ route('tasks.create') }}" styles="indigo">
                     Create Task
                 </x-button>
             </div>
@@ -19,7 +19,7 @@
                     <div class="flex min-w-0 gap-x-4">
                         <div class="flex-auto min-w-0">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                <a href="/tasks/{{ $task->id }}">
+                                <a href="{{ route('tasks.show', $task->id) }}">
                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
                                     {{ $task->title }}
                                 </a>

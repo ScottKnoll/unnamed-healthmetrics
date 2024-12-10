@@ -75,7 +75,8 @@
                     </div>
                     <div class="px-4 py-3 text-right sm:px-6">
                         <div class="flex items-center justify-end gap-x-6">
-                            <a href="/habits" class="font-semibold text-gray-900 text-sm/6">Cancel</a>
+                            <a href="{{ route('habits.index') }}"
+                                class="font-semibold text-gray-900 text-sm/6">Cancel</a>
                             <x-button type="submit" styles="indigo">Update Habit</x-button>
                         </div>
                     </div>

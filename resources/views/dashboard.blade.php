@@ -5,7 +5,7 @@
                 <div class="col-span-1 px-5 py-6 bg-white rounded-lg shadow sm:px-6">
                     <div class="flex items-start justify-between">
                         <h5 class="mb-8 text-xl font-bold">Habits</h5>
-                        <x-button href="/habits/create" styles="indigo" size="md">
+                        <x-button href="{{ route('habits.create') }}" styles="indigo" size="md">
                             Create Habit
                         </x-button>
                     </div>
@@ -43,8 +43,9 @@
                                                     x-text="maxStreak"></span>
                                             </p>
                                         </div>
-                                        <a href="/habits/{{ $habit->id }}/edit"
-                                            class="text-sm text-indigo-600 hover:text-indigo-800">Edit</a>
+                                        <a href="{{ route('habits.edit', $habit->id) }}"
+                                            class="text-sm text-indigo-600 hover:text-indigo-800">Edit
+                                        </a>
                                     </div>
                                 </li>
                             @empty
@@ -74,7 +75,7 @@
                 <div class="col-span-1 px-5 py-6 bg-white rounded-lg shadow sm:px-6">
                     <div class="flex items-start justify-between">
                         <h5 class="mb-8 text-xl font-bold">Goals</h5>
-                        <x-button href="/goals/create" styles="indigo" size="md">
+                        <x-button href="{{ route('goals.create') }}" styles="indigo" size="md">
                             Create Goal
                         </x-button>
                     </div>
@@ -86,7 +87,7 @@
                                     <div class="flex min-w-0 gap-x-4">
                                         <div class="flex-auto min-w-0">
                                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                                <a href="/goals/{{ $goal->id }}">
+                                                <a href="{{ route('goals.show', $goal->id) }}">
                                                     <span class="absolute inset-x-0 bottom-0 -top-px"></span>
                                                     {{ $goal->title }}
                                                 </a>
