@@ -41,13 +41,17 @@ class GoalMilestoneController extends Controller
     public function update(Goal $goal, Milestone $milestone)
     {
         $validated = request()->validate([
-            'title' => 'required|max:255',
+            'title' => 'sometimes|max:255',
             'target_date' => 'nullable|date',
             'description' => 'nullable|max:255',
             'is_completed' => 'nullable|boolean',
         ]);
 
         $milestone->update($validated);
+
+        if (request()->has('is_completed')) {
+            return back();
+        }
 
         return redirect('/goals/' . $goal->id);
     }

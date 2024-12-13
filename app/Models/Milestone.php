@@ -16,6 +16,7 @@ class Milestone extends Model
 
     protected $casts = [
         'target_date' => 'datetime',
+        'is_completed' => 'boolean',
     ];
 
     public function goal()

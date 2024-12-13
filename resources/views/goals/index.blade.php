@@ -58,18 +58,34 @@
                                     @foreach ($goal->milestones as $milestone)
                                         <li class="p-4 rounded-lg shadow bg-gray-50">
                                             <div class="flex items-center justify-between">
-                                                <div>
-                                                    <h4 class="font-semibold text-gray-800 text-md">
-                                                        {{ $milestone->title }}
-                                                    </h4>
-                                                    @if ($milestone->description)
-                                                        <p class="mt-1 text-sm text-gray-500">
-                                                            {{ $milestone->description }}</p>
-                                                    @endif
-                                                    @if ($milestone->target_date)
-                                                        <p class="mt-1 text-xs text-gray-400">Target Date:
-                                                            {{ $milestone->target_date->format('M d, Y') }}</p>
-                                                    @endif
+                                                <div class="flex items-center gap-x-3">
+                                                    <div x-data>
+                                                        <form method="POST"
+                                                            action="{{ route('goals.milestones.update', [$goal->id, $milestone->id]) }}">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="is_completed" value="0">
+                                                            <input type="hidden" name="redirect_to"
+                                                                value="{{ url()->current() }}">
+                                                            <input type="checkbox" name="is_completed" value="1"
+                                                                class="w-5 h-5 text-blue-600 form-checkbox"
+                                                                {{ $milestone->is_completed ? 'checked' : '' }}
+                                                                x-on:change="$el.form.submit()">
+                                                        </form>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-semibold text-gray-800 text-md">
+                                                            {{ $milestone->title }}
+                                                        </h4>
+                                                        @if ($milestone->description)
+                                                            <p class="mt-1 text-sm text-gray-500">
+                                                                {{ $milestone->description }}</p>
+                                                        @endif
+                                                        @if ($milestone->target_date)
+                                                            <p class="mt-1 text-xs text-gray-400">Target Date:
+                                                                {{ $milestone->target_date->format('M d, Y') }}</p>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                                 <div class="flex items-center space-x-2">
                                                     <x-button
