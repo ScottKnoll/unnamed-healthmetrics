@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                        <div class="px-4 py-3 text-right bg-white border-t border-gray-200 sm:px-6">
                             <x-button type="submit" styles="indigo">Save</x-button>
                         </div>
                     </div>

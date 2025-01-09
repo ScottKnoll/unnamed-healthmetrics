@@ -32,7 +32,7 @@
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between bg-white border-t border-gray-200">
                         <div class="px-4 py-3 text-right sm:px-6">
                             <x-button href="" styles="white">+ Add Task</x-button>
                         </div>

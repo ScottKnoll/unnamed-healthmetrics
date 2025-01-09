@@ -48,21 +48,8 @@
                             </x-select>
                             <x-input-error :messages="$errors->get('difficulty')" class="mt-2" />
                         </div>
-                        {{-- <div class="col-span-full">
-                            <x-label for="goal_ids" class="mb-2">Associate with Goals</x-label>
-                            <select id="goal_ids" name="goal_ids[]" multiple
-                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                @foreach ($goals as $goal)
-                                    <option value="{{ $goal->id }}"
-                                        {{ collect(old('goal_ids', $habitGoalIds))->contains($goal->id) ? 'selected' : '' }}>
-                                        {{ $goal->title }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('goal_ids')" class="mt-2" />
-                        </div> --}}
                     </div>
-                    <div class="px-4 py-3 text-right sm:px-6">
+                    <div class="px-4 py-3 text-right bg-white border-t border-gray-200 sm:px-6">
                         <x-button type="submit" styles="indigo">Save</x-button>
                     </div>
                 </div>
