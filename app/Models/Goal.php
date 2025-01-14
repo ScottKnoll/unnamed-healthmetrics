@@ -11,12 +11,15 @@ class Goal extends Model
         'category',
         'title',
         'smart_goals',
-        'goal_start',
-        'goal_end',
+        'start_date',
+        'end_date',
+        'notes',
     ];
 
     protected $casts = [
         'smart_goals' => 'array',
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
     ];
 
     public function habits()

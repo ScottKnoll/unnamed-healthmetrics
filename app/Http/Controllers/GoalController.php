@@ -42,10 +42,11 @@ class GoalController extends Controller
     {
         $categories = auth()->user()->getCategories();
         $validated = request()->validate([
-            'category' => 'required',
+            'category' => 'required|in:social,career,physical,family,leisure,personality,other',
             'title' => 'required|max:255',
-            'goal_start' => 'nullable|date',
-            'goal_end' => 'nullable|date',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'notes' => 'nullable|max:1000',
             'smart_goals' => 'nullable|array',
             'smart_goals.specific' => 'nullable',
             'smart_goals.measurable' => 'nullable',

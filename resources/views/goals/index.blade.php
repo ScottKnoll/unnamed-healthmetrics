@@ -49,6 +49,31 @@
                         <div class="mt-4">
                             <div>
                                 <div class="px-4 sm:px-0">
+                                    <h3 class="font-semibold text-gray-900 text-base/7">Details</h3>
+                                    {{-- <p class="max-w-2xl mt-1 text-gray-500 text-sm/6">What makes this goal smart
+                                    </p> --}}
+                                </div>
+                                <div class="mt-6">
+                                    <dl class="grid grid-cols-1 sm:grid-cols-2">
+                                        <div
+                                            class="px-4 py-6 border-t border-gray-100 sm:col-span-2 sm:px-0 {{ $loop->last ? 'border-b border-gray-100' : '' }}">
+                                            <dt class="font-medium text-gray-900 text-sm/6">
+                                                <div class="flex items-center">
+                                                    <x-svg.calendar-date-range
+                                                        class="block w-auto mr-2 text-gray-800 size-4" />
+                                                    {{ $goal->start_date ? $goal->start_date->format('M d, Y') : 'N/A' }}
+                                                    - {{ $goal->end_date ? $goal->end_date->format('M d, Y') : 'N/A' }}
+                                                </div>
+                                            </dt>
+                                            <dd class="mt-1 text-gray-700 text-sm/6 sm:mt-2">
+                                                Hardcoded 0/0 tasks done
+                                            </dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <div class="px-4 sm:px-0">
                                     <h3 class="font-semibold text-gray-900 text-base/7">SMART List</h3>
                                     <p class="max-w-2xl mt-1 text-gray-500 text-sm/6">What makes this goal smart
                                     </p>

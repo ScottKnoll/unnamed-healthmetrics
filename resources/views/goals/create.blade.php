@@ -71,15 +71,15 @@
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
                                 <div class="col-span-1">
-                                    <x-label class="mb-2" for="goal_start">Goal Start</x-label>
-                                    <x-input type="date" id="goal_start" name="goal_start"
-                                        :value="old('goal_start')"></x-input>
-                                    <x-input-error :messages="$errors->get('goal_start')" class="mt-2" />
+                                    <x-label class="mb-2" for="start_date">Start Date</x-label>
+                                    <x-input type="date" id="start_date" name="start_date"
+                                        :value="old('start_date')"></x-input>
+                                    <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
                                 </div>
                                 <div class="col-span-1">
-                                    <x-label class="mb-2" for="goal_end">Goal End</x-label>
-                                    <x-input type="date" id="goal_end" name="goal_end" :value="old('goal_end')"></x-input>
-                                    <x-input-error :messages="$errors->get('goal_end')" class="mt-2" />
+                                    <x-label class="mb-2" for="end_date">End Date</x-label>
+                                    <x-input type="date" id="end_date" name="end_date" :value="old('end_date')"></x-input>
+                                    <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
                                 </div>
                             </div>
                         </div>
@@ -129,6 +129,16 @@
                                     <p class="mt-2 text-sm text-gray-500">What’s the deadline and is it realistic?</p>
                                     <x-input-error :messages="$errors->get('smart_goals.time-based')" class="mt-2" />
                                 </div>
+                            </div>
+                            {{-- <div>
+                                <h3 class="text-base font-semibold leading-6 text-gray-900">Notes</h3>
+                                <p class="mt-1 text-sm text-gray-500">Write goals that are measurable.</p>
+                            </div> --}}
+                            <div class="grid grid-cols-1">
+                                <x-label class="mb-2" for="notes">Notes</x-label>
+                                <x-textarea type="text" id="notes" name="notes"
+                                    rows="4">{{ old('notes') }}</x-textarea>
+                                <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                             </div>
                         </div>
                         <div class="px-4 py-3 text-right bg-white border-t border-gray-200 sm:px-6">
