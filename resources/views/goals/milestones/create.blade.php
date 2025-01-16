@@ -27,8 +27,8 @@
                         </div>
                         <div class="col-span-full">
                             <x-label class="mb-2" for="notes">Notes</x-label>
-                            <x-textarea type="text" id="notes" name="notes" :value="old('notes')"
-                                rows="4"></x-textarea>
+                            <x-textarea type="text" id="notes" name="notes"
+                                rows="4">{{ old('notes') }}</x-textarea>
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
                     </div>

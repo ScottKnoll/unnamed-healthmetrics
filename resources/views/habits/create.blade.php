@@ -20,8 +20,8 @@
                         </div>
                         <div class="col-span-full">
                             <x-label for="notes" class="mb-2">Notes</x-label>
-                            <x-textarea name="notes" id="notes" rows="4" :value="old('notes')"
-                                class="w-full"></x-textarea>
+                            <x-textarea name="notes" id="notes" rows="4"
+                                class="w-full">{{ old('notes') }}</x-textarea>
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
                         <div class="col-span-full">

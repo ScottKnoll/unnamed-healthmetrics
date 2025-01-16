@@ -9,14 +9,11 @@ class GoalController extends Controller
     public function index()
     {
         $categories = auth()->user()->getCategories();
-        $currentCategorySlug = request()->query('category', 'all');
+        $currentCategorySlug = request('category', 'all');
 
-        if ($currentCategorySlug === 'all') {
-            $goals = Goal::with('milestones')->get();
-        } else {
-            $currentCategoryName = $categories[$currentCategorySlug];
-            $goals = Goal::with('milestones')->where('category', $currentCategoryName)->get();
-        }
+        $goals = $currentCategorySlug === 'all'
+            ? Goal::with('milestones')->get()
+            : Goal::with('milestones')->where('category', $categories[$currentCategorySlug])->get();
 
         return view('goals.index', [
             'goals' => $goals,
@@ -28,7 +25,7 @@ class GoalController extends Controller
     public function create()
     {
         $categories = auth()->user()->getCategories();
-        $selectedCategorySlug = request()->query('category', 'social');
+        $selectedCategorySlug = request('category', 'social');
         $selectedCategory = $categories[$selectedCategorySlug] ?? 'Default Category';
 
         return view('goals.create', [
@@ -86,8 +83,11 @@ class GoalController extends Controller
     {
         $validated = request()->validate([
             'category' => 'required|in:social,career,physical,family,leisure,personality,other',
-            'goal' => 'required|max:255',
-            'smart_goals' => 'required|array',
+            'title' => 'required|max:255',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'notes' => 'nullable|max:1000',
+            'smart_goals' => 'nullable|array',
             'smart_goals.specific' => 'nullable',
             'smart_goals.measurable' => 'nullable',
             'smart_goals.achievable' => 'nullable',

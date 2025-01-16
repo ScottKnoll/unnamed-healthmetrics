@@ -65,7 +65,7 @@
                                 <div>
                                     <x-label class="mb-2" for="smart_goals[specific]">Specific</x-label>
                                     <x-textarea id="smart_goals[specific]" name="smart_goals[specific]"
-                                        rows="3">{{ old('smart_goals[specific]', $goal->smart_goals['specific']) }}</x-textarea>
+                                        rows="4">{{ old('smart_goals[specific]', $goal->smart_goals['specific']) }}</x-textarea>
                                     <p class="mt-2 text-sm text-gray-500">What do you want to accomplish? Who needs to
                                         be included? When do you want to do this? Why is this a goal?</p>
                                     <x-input-error :messages="$errors->get('smart_goals.specific')" class="mt-2" />
@@ -73,7 +73,7 @@
                                 <div>
                                     <x-label class="mb-2" for="smart_goals[measurable]">Measurable</x-label>
                                     <x-textarea id="smart_goals[measurable]" name="smart_goals[measurable]"
-                                        rows="3">{{ old('smart_goals[measurable]', $goal->smart_goals['measurable']) }}</x-textarea>
+                                        rows="4">{{ old('smart_goals[measurable]', $goal->smart_goals['measurable']) }}</x-textarea>
                                     <p class="mt-2 text-sm text-gray-500">How can you measure progress and know if
                                         you’ve successfully met your goal?</p>
                                     <x-input-error :messages="$errors->get('smart_goals.measurable')" class="mt-2" />
@@ -81,7 +81,7 @@
                                 <div>
                                     <x-label class="mb-2" for="smart_goals[achievable]">Achievable</x-label>
                                     <x-textarea id="smart_goals[achievable]" name="smart_goals[achievable]"
-                                        rows="3">{{ old('smart_goals[achievable]', $goal->smart_goals['achievable']) }}</x-textarea>
+                                        rows="4">{{ old('smart_goals[achievable]', $goal->smart_goals['achievable']) }}</x-textarea>
                                     <p class="mt-2 text-sm text-gray-500">Do you have the skills required to achieve the
                                         goal? If not, can you obtain them? What is the motivation for this goal? Is the
                                         amount of effort required on par with what the goal will achieve?</p>
@@ -90,7 +90,7 @@
                                 <div>
                                     <x-label class="mb-2" for="smart_goals[relevant]">Relevant</x-label>
                                     <x-textarea id="smart_goals[relevant]" name="smart_goals[relevant]"
-                                        rows="3">{{ old('smart_goals[relevant]', $goal->smart_goals['relevant']) }}</x-textarea>
+                                        rows="4">{{ old('smart_goals[relevant]', $goal->smart_goals['relevant']) }}</x-textarea>
                                     <p class="mt-2 text-sm text-gray-500">Why am I setting this goal now? Is it aligned
                                         with overall objectives?</p>
                                     <x-input-error :messages="$errors->get('smart_goals.relevant')" class="mt-2" />
@@ -98,10 +98,16 @@
                                 <div>
                                     <x-label class="mb-2" for="smart_goals[time-based]">Time-based</x-label>
                                     <x-textarea id="smart_goals[time-based]" name="smart_goals[time-based]"
-                                        rows="3">{{ old('smart_goals[time-based]', $goal->smart_goals['time-based']) }}</x-textarea>
+                                        rows="4">{{ old('smart_goals[time-based]', $goal->smart_goals['time-based']) }}</x-textarea>
                                     <p class="mt-2 text-sm text-gray-500">What’s the deadline and is it realistic?</p>
                                     <x-input-error :messages="$errors->get('smart_goals.time-based')" class="mt-2" />
                                 </div>
+                            </div>
+                            <div class="grid grid-cols-1">
+                                <x-label class="mb-2" for="notes">Notes</x-label>
+                                <x-textarea type="text" id="notes" name="notes"
+                                    rows="4">{{ old('notes'), $goal->notes }}</x-textarea>
+                                <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                             </div>
                         </div>
                         <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
