@@ -10,14 +10,12 @@ class Goal extends Model
         'user_id',
         'category',
         'title',
-        'smart_goals',
         'start_date',
         'end_date',
         'notes',
     ];
 
     protected $casts = [
-        'smart_goals' => 'array',
         'start_date' => 'datetime',
         'end_date' => 'datetime',
     ];

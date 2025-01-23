@@ -39,17 +39,11 @@ class GoalController extends Controller
     {
         $categories = auth()->user()->getCategories();
         $validated = request()->validate([
-            'category' => 'required|in:social,career,physical,family,leisure,personality,other',
+            'category' => 'required|in:social,career-finance,health-fitness,family,hobbies,personal-development,other',
             'title' => 'required|max:255',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
             'notes' => 'nullable|max:1000',
-            'smart_goals' => 'nullable|array',
-            'smart_goals.specific' => 'nullable',
-            'smart_goals.measurable' => 'nullable',
-            'smart_goals.achievable' => 'nullable',
-            'smart_goals.relevant' => 'nullable',
-            'smart_goals.time-based' => 'nullable',
         ]);
 
         $goal = auth()->user()->goals()->create($validated);
@@ -57,7 +51,7 @@ class GoalController extends Controller
         $categorySlug = array_search($goal->category, $categories);
 
         return redirect()->route('goals.index', [
-            'category' => $categorySlug
+            'categorySlug' => $categorySlug
         ]);
     }
 
@@ -87,12 +81,6 @@ class GoalController extends Controller
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
             'notes' => 'nullable|max:1000',
-            'smart_goals' => 'nullable|array',
-            'smart_goals.specific' => 'nullable',
-            'smart_goals.measurable' => 'nullable',
-            'smart_goals.achievable' => 'nullable',
-            'smart_goals.relevant' => 'nullable',
-            'smart_goals.time-based' => 'nullable',
         ]);
 
         $goal->update($validated);

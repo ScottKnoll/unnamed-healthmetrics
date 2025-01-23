@@ -19,7 +19,12 @@
             </div>
         </button>
     </h2>
-    <div x-show="open" x-collapse.duration.300ms class="px-4 py-5 sm:px-6">
+    {{-- <div x-show="open" x-collapse.duration.700ms class="px-4 py-5 sm:px-6">
+        <div>
+            {{ $slot }}
+        </div>
+    </div> --}}
+    <div class="px-4 py-5 sm:px-6">
         <div>
             {{ $slot }}
         </div>
