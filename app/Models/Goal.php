@@ -30,6 +30,16 @@ class Goal extends Model
         return $this->hasMany(Milestone::class);
     }
 
+    public function targetParameters()
+    {
+        return $this->hasMany(TargetParameter::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

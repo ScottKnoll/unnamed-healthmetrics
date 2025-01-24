@@ -8,21 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('target_parameters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('goal_id')->constrained()->onDelete('cascade');
-            $table->foreignId('milestone_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('target_type_id')->constrained()->onDelete('restrict');
             $table->string('name');
-            $table->text('notes')->nullable();
-            $table->integer('current_count')->default(0);
-            $table->integer('target_count')->nullable();
-            $table->boolean('is_completed')->default(false);
+            $table->integer('target_value');
+            $table->string('frequency')->default('weekly');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('target_parameters');
     }
 };
