@@ -10,15 +10,31 @@ class GoalController extends Controller
     {
         $categories = auth()->user()->getCategories();
         $currentCategorySlug = request('category', 'all');
+        $status = request('status', 'active');
 
-        $goals = $currentCategorySlug === 'all'
-            ? Goal::with('milestones')->get()
-            : Goal::with('milestones')->where('category', $categories[$currentCategorySlug])->get();
+        $goals = Goal::query()
+            ->with('milestones')
+            ->where('user_id', auth()->id())
+            ->when($currentCategorySlug !== 'all', function ($query) use ($categories, $currentCategorySlug) {
+                return $query->where('category', $categories[$currentCategorySlug]);
+            })
+            ->when($status === 'completed', function ($query) {
+                return $query->whereNotNull('completed_at');
+            }, function ($query) {
+                return $query->whereNull('completed_at');
+            })
+            ->get();
 
         return view('goals.index', [
             'goals' => $goals,
             'categories' => $categories,
             'currentCategory' => $currentCategorySlug,
+            'activeCount' => Goal::where('user_id', auth()->id())
+                ->whereNull('completed_at')
+                ->count(),
+            'completedCount' => Goal::where('user_id', auth()->id())
+                ->whereNotNull('completed_at')
+                ->count(),
         ]);
     }
 

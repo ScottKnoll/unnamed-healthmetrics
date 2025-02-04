@@ -187,25 +187,14 @@
                                         </x-slot>
                                         <x-slot name="content">
                                             <div role="menu" aria-orientation="vertical">
-                                                {{-- @php
-                                $isAdmin = auth()->user()->hasRole('admin');
-                            @endphp
-                            @if ($isAdmin || auth()->user()->hasRole('audio'))
-                                <x-dropdown-link href="/shows?status=active&type=audio">
-                                    Active{{ $isAdmin ? ' Audio' : '' }} ({{ $activeAudioCount }})
-                                </x-dropdown-link>
-                                <x-dropdown-link href="/shows?status=inactive&type=audio">
-                                    Inactive{{ $isAdmin ? ' Audio' : '' }} ({{ $inactiveAudioCount }})
-                                </x-dropdown-link>
-                            @endif
-                            @if ($isAdmin || auth()->user()->hasRole('tv'))
-                                <x-dropdown-link href="/shows?status=active&type=tv">
-                                    Active{{ $isAdmin ? ' TV' : '' }} ({{ $activeTvCount }})
-                                </x-dropdown-link>
-                                <x-dropdown-link href="/shows?status=inactive&type=tv">
-                                    Inactive{{ $isAdmin ? ' TV' : '' }} ({{ $inactiveTvCount }})
-                                </x-dropdown-link>
-                            @endif --}}
+                                                <x-dropdown-link
+                                                    href="{{ request()->fullUrlWithQuery(['status' => 'active']) }}">
+                                                    Active ({{ $activeCount }})
+                                                </x-dropdown-link>
+                                                <x-dropdown-link
+                                                    href="{{ request()->fullUrlWithQuery(['status' => 'completed']) }}">
+                                                    Completed ({{ $completedCount }})
+                                                </x-dropdown-link>
                                             </div>
                                         </x-slot>
                                     </x-dropdown>
@@ -272,10 +261,9 @@
                                     </a>
                                 @empty
                                     <div class="py-3 text-center">
-                                        <x-svg.check-badge class="w-12 h-12 mx-auto" />
+                                        <x-svg.check-badge class="mx-auto size-12" />
                                         <h3 class="mt-2 text-sm font-semibold text-gray-900">No goals for this category
                                         </h3>
-                                        <p class="mt-1 text-sm text-gray-500">Get started by creating a goal.</p>
                                     </div>
                                 @endforelse
                             </ul>

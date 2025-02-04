@@ -13,11 +13,13 @@ class Goal extends Model
         'start_date',
         'end_date',
         'notes',
+        'completed_at',
     ];
 
     protected $casts = [
         'start_date' => 'datetime',
         'end_date' => 'datetime',
+        'completed_at' => 'datetime',
     ];
 
     public function habits()

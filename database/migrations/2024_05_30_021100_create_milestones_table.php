@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('notes')->nullable();
             $table->date('target_date')->nullable();
-            $table->boolean('is_completed')->default(false);
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }

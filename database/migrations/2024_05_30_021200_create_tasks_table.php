@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->integer('current_count')->default(0);
             $table->integer('target_count')->nullable();
-            $table->boolean('is_completed')->default(false);
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }

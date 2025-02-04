@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('notes')->nullable();
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }
