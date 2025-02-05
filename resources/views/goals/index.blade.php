@@ -38,143 +38,13 @@
             </div>
         </div>
     </x-slot>
-    {{-- <x-container>
-        <ul role="list" class="mt-8">
-            @forelse ($goals as $goal)
-                <li class="mt-4">
-                    <x-accordion :title="$goal->title" :subtitle="$goal->category">
-                        <div class="px-4 mt-2 sm:px-0">
-                            <h3 class="font-semibold text-gray-900 text-base/7">Details</h3>
-                            <p class="max-w-2xl mt-1 text-gray-500 text-sm/6">What makes this goal smart
-                                    </p>
-                        </div>
-                        <div class="mt-6">
-                            <dl class="grid grid-cols-1 sm:grid-cols-2">
-                                <div
-                                    class="px-4 py-6 border-t border-gray-100 sm:col-span-2 sm:px-0 {{ $loop->last ? 'border-b border-gray-100' : '' }}">
-                                    <dt class="font-medium text-gray-900 text-sm/6">
-                                        <div class="flex items-center">
-                                            <x-svg.calendar-date-range class="block w-auto mr-2 text-gray-800 size-4" />
-                                            {{ $goal->start_date ? $goal->start_date->format('M d, Y') : 'N/A' }}
-                                            - {{ $goal->end_date ? $goal->end_date->format('M d, Y') : 'N/A' }}
-                                        </div>
-                                    </dt>
-                                    <dd class="mt-1 text-gray-700 text-sm/6 sm:mt-2">
-                                        {{ $goal->notes }}
-                                    </dd>
-                                    <dd class="mt-1 text-gray-700 text-sm/6 sm:mt-2">
-                                        Hardcoded 0/0 tasks done
-                                    </dd>
-                                </div>
-                            </dl>
-                        </div>
-                        <div class="flex justify-end mb-4">
-                                <x-button href="{{ route('goals.milestones.create', $goal->id) }}" type="button"
-                                    styles="green">
-                                    Add Milestone
-                                </x-button>
-                            </div>
-                        <div class="mt-6">
-                            <div class="px-4 sm:px-0">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900 text-base/7">Milestones</h3>
-                                        <p class="max-w-2xl mt-1 text-gray-500 text-sm/6">Keep this here for now
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <x-button href="{{ route('goals.milestones.create', ['goal' => $goal->id]) }}"
-                                            type="button" styles="indigo">Add</x-button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="px-4 py-6 sm:col-span-2 sm:px-0">
-                                @if ($goal->milestones->isNotEmpty())
-                                    <ul role="list" class="space-y-4">
-                                        @foreach ($goal->milestones as $milestone)
-                                            <li class="p-4 bg-white border border-gray-200 rounded-md">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="flex items-center gap-x-3">
-                                                        <div x-data>
-                                                            <form method="POST"
-                                                                action="{{ route('goals.milestones.update', [$goal->id, $milestone->id]) }}">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <input type="hidden" name="is_completed"
-                                                                    value="0">
-                                                                <input type="hidden" name="redirect_to"
-                                                                    value="{{ url()->current() }}">
-                                                                <input type="checkbox" name="is_completed"
-                                                                    value="1"
-                                                                    class="w-5 h-5 text-blue-600 form-checkbox"
-                                                                    {{ $milestone->is_completed ? 'checked' : '' }}
-                                                                    x-on:change="$el.form.submit()">
-                                                            </form>
-                                                        </div>
-                                                        <div>
-                                                            <h4 class="font-semibold text-gray-800 text-md">
-                                                                {{ $milestone->title }}
-                                                            </h4>
-                                                            @if ($milestone->description)
-                                                                <p class="mt-1 text-sm text-gray-500">
-                                                                    {{ $milestone->description }}</p>
-                                                            @endif
-                                                            @if ($milestone->target_date)
-                                                                <p class="mt-1 text-xs text-gray-400">Target
-                                                                    Date:
-                                                                    {{ $milestone->target_date->format('M d, Y') }}
-                                                                </p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex items-center space-x-2">
-                                                        <x-button
-                                                            href="{{ route('goals.milestones.edit', [$goal->id, $milestone->id]) }}"
-                                                            type="button" styles="blue" size="small">
-                                                            Edit
-                                                        </x-button>
-                                                        <form
-                                                            action="{{ route('goals.milestones.destroy', [$goal->id, $milestone->id]) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Are you sure you want to delete this milestone?');">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <x-button type="submit" styles="red" size="small">
-                                                                Delete
-                                                            </x-button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <div class="text-center text-gray-500">
-                                        <p>No milestones for this goal yet.</p>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </x-accordion>
-                </li>
-            @empty
-                <li class="flex items-center justify-center py-5">
-                    <div class="text-center">
-                        <x-svg.check-badge class="w-12 h-12 mx-auto" />
-                        <h3 class="mt-2 text-sm font-semibold text-gray-900">No goals for this category</h3>
-                        <p class="mt-1 text-sm text-gray-500">Get started by creating a goal.</p>
-                    </div>
-                </li>
-            @endforelse
-        </ul>
-    </x-container> --}}
     <div class="w-full mx-auto mt-2 max-w-7xl">
         <div class="bg-white dark:bg-zinc-950">
             <div class="flow-root">
                 <div class="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full p-2 align-middle sm:px-6 lg:px-8">
-                        <x-data-table>
-                            <x-data-table.action-bar>
+                        <x-data-table class="divide-gray-300 dark:bg-zinc-900 ring-black/5">
+                            <x-data-table.action-bar class="bg-gray-50">
                                 <div class="ml-auto">
                                     <x-dropdown>
                                         <x-slot name="trigger">
@@ -200,15 +70,15 @@
                                     </x-dropdown>
                                 </div>
                             </x-data-table.action-bar>
-                            {{-- @if ($status == 'inactive') --}}
-                            <x-data-table.filter-bar>
-                                <x-badge color="evergreen">Inactive</x-badge>
-                                <a href="/topics"
-                                    class="dark:text-zinc-500 text-zinc-600 dark:hover:text-zinc-400 hover:text-zinc-500">
-                                    <x-svg.x-circle class="size-5" />
-                                </a>
-                            </x-data-table.filter-bar>
-                            {{-- @endif --}}
+                            @if ($status == 'completed')
+                                <x-data-table.filter-bar class="text-sm dark:bg-zinc-850 bg-zinc-50 dark:text-zinc-300 text-zinc-600">
+                                    <x-badge color="green">Completed</x-badge>
+                                    <a href="/goals"
+                                        class="dark:text-zinc-500 text-zinc-600 dark:hover:text-zinc-400 hover:text-zinc-500">
+                                        <x-svg.x-circle class="size-5" />
+                                    </a>
+                                </x-data-table.filter-bar>
+                            @endif
                             <ul role="list"
                                 class="divide-y dark:divide-white/10 divide-zinc-950/10 bg-zinc-850 dark:border-white/10 border-zinc-950/10">
                                 @forelse ($goals as $goal)

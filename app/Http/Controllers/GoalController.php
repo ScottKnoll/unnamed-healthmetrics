@@ -27,6 +27,7 @@ class GoalController extends Controller
 
         return view('goals.index', [
             'goals' => $goals,
+            'status' => $status,
             'categories' => $categories,
             'currentCategory' => $currentCategorySlug,
             'activeCount' => Goal::where('user_id', auth()->id())
